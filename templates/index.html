@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equiva — Partnering for Equity. Creating Lasting Impact.</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar (sticky, uses design token values) -->
+    <nav class="navbar" style="
+        background: #fff;
+        border-bottom: 1px solid var(--border-light);
+        padding: 0 32px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    ">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="var(--brand-core)" stroke-width="2">
+                <circle cx="14" cy="14" r="12"/>
+                <path d="M8 14h12M14 8v12"/>
+                <circle cx="14" cy="14" r="4" fill="var(--brand-core)"/>
+            </svg>
+            <span class="logo-title" style="font-size:17px; font-weight:700; letter-spacing:0.3px; color:var(--text-primary);">EQUIVA</span>
+        </div>
+        <div style="display: flex; gap: 24px; align-items: center;">
+            <a href="#what-we-do" style="font-size:13px; font-weight:500; color: var(--grey-body); text-decoration:none;">What We Do</a>
+            <a href="#team" style="font-size:13px; font-weight:500; color: var(--grey-body); text-decoration:none;">Team</a>
+            <a href="#join" style="font-size:13px; font-weight:500; color: var(--grey-body); text-decoration:none;">Join Us</a>
+            <a href="#contact" class="btn-primary" style="
+                background: var(--brand-core);
+                color: #fff;
+                padding: 8px 16px;
+                border-radius: 6px;
+                font-size: 13px;
+                font-weight: 600;
+                text-decoration: none;
+            ">Partner With Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-banner anim-card" style="margin: 24px 32px; flex-direction: column; text-align: center; padding: 64px 32px;">
+        <div class="pulse-glow pulse-glow-1"></div>
+        <div class="pulse-glow pulse-glow-2"></div>
+        <h1 style="font-size: 48px; font-weight: 700; line-height: 1.15; margin-bottom: 16px; color: var(--text-primary);">
+            Equity + Value<br><span style="color: var(--brand-core);">Partnering for Equity. Creating Lasting Impact.</span>
+        </h1>
+        <p style="font-size: 16px; color: var(--grey-body); max-width: 600px; margin: 0 auto 32px;">
+            We are a charitable NGO dedicated to advancing equity in health, education, and opportunity — especially for women and vulnerable communities.
+        </p>
+        <a href="#what-we-do" class="btn-primary" style="
+            display: inline-block;
+            background: var(--brand-core);
+            color: #fff;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+        ">Learn More</a>
+    </section>
+
+    <!-- Mission & Vision (using stat cards grid) -->
+    <div class="content" style="padding-top: 0;">
+        <div class="stat-cards-row" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="stat-card anim-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-label">OUR VISION</span>
+                </div>
+                <p style="font-size: 15px; color: var(--text-primary); line-height: 1.6; margin-top: 8px;">
+                    A world where health, education, dignity, and opportunity are accessible to all, regardless of gender, income, or geography.
+                </p>
+            </div>
+            <div class="stat-card anim-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-label">OUR MISSION</span>
+                </div>
+                <p style="font-size: 15px; color: var(--text-primary); line-height: 1.6; margin-top: 8px;">
+                    To strengthen health and social systems through evidence, innovation, and partnerships that improve access, quality, and outcomes — particularly for women, children, and underserved communities.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- What We Do (Section with letter badges) -->
+    <section id="what-we-do" class="content">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="section-badge">A</span>
+                What We Do
+            </h2>
+        </div>
+
+        <div class="stat-cards-row">
+            <!-- Health Systems Strengthening -->
+            <div class="stat-card anim-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-label">🌍 Health Systems</span>
+                </div>
+                <p style="font-size:13px; color:var(--grey-body); line-height:1.6;">
+                    We strengthen governance, service delivery, and quality improvement to build resilient, people‑centered health systems.
+                </p>
+            </div>
+            <!-- Data Analytics -->
+            <div class="stat-card anim-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-label">📊 Data Analytics</span>
+                </div>
+                <p style="font-size:13px; color:var(--grey-body); line-height:1.6;">
+                    Transforming data into evidence for policy and practice — dashboards, predictive models, and data quality assessments.
+                </p>
+            </div>
+            <!-- PFM -->
+            <div class="stat-card anim-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-label">💸 Public Financial Management</span>
+                </div>
+                <p style="font-size:13px; color:var(--grey-body); line-height:1.6;">
+                    Better budgeting, expenditure tracking, and fiscal analysis to ensure every dollar works harder for health and education.
+                </p>
+            </div>
+            <!-- Health Financing -->
+            <div class="stat-card anim-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-label">⚕️ Health Financing</span>
+                </div>
+                <p style="font-size:13px; color:var(--grey-body); line-height:1.6;">
+                    Designing equitable financing reforms that expand coverage and reduce financial hardship.
+                </p>
+            </div>
+            <!-- Market Shaping -->
+            <div class="stat-card anim-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-label">🛒 Market Shaping</span>
+                </div>
+                <p style="font-size:13px; color:var(--grey-body); line-height:1.6;">
+                    Ensuring essential medicines and nutrition products are accessible, affordable, and high‑quality.
+                </p>
+            </div>
+            <!-- Gender Mainstreaming -->
+            <div class="stat-card anim-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-label">♀️ Gender Mainstreaming</span>
+                </div>
+                <p style="font-size:13px; color:var(--grey-body); line-height:1.6;">
+                    Integrating gender equality into policies and programs — addressing structural barriers for women and girls.
+                </p>
+            </div>
+            <!-- MNCH -->
+            <div class="stat-card anim-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-label">👶🏽 MNCH</span>
+                </div>
+                <p style="font-size:13px; color:var(--grey-body); line-height:1.6;">
+                    Ensuring every woman, newborn, and child survives and thrives through safe pregnancy care and community services.
+                </p>
+            </div>
+            <!-- Nutrition -->
+            <div class="stat-card anim-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-label">🍎 Nutrition</span>
+                </div>
+                <p style="font-size:13px; color:var(--grey-body); line-height:1.6;">
+                    Tackling malnutrition through food systems strengthening and maternal‑child feeding programs.
+                </p>
+            </div>
+            <!-- Education -->
+            <div class="stat-card anim-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-label">📚 Education</span>
+                </div>
+                <p style="font-size:13px; color:var(--grey-body); line-height:1.6;">
+                    Strengthening inclusive, equitable education systems through teacher capacity building and data‑driven reforms.
+                </p>
+            </div>
+            <!-- Advocacy -->
+            <div class="stat-card anim-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-label">📣 Advocacy & Policy</span>
+                </div>
+                <p style="font-size:13px; color:var(--grey-body); line-height:1.6;">
+                    Amplifying community voices and influencing policy for accountable, people‑centered health and education.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="content">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="section-badge">B</span>
+                Meet Our Team
+            </h2>
+        </div>
+        <div class="stat-cards-row" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="stat-card anim-card">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--warmth-primary); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 20px;">OA</div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 16px;">Oluwafeyikemi Adeniyi</div>
+                        <div style="font-size: 12px; color: var(--grey-body);">Managing Director, Equiva Africa</div>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-card anim-card">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--accent-royal); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 20px;">RA</div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 16px;">Roli Akpolo</div>
+                        <div style="font-size: 12px; color: var(--grey-body);">Managing Director, Equiva Africa</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section id="join" class="content">
+        <div class="hero-banner anim-card" style="text-align: center; flex-direction: column;">
+            <h2 style="font-size: 28px; font-weight: 700; margin-bottom: 16px;">Join Us</h2>
+            <p style="font-size: 15px; color: var(--grey-body); max-width: 600px; margin: 0 auto 24px;">
+                Whether you are a policymaker, donor, community leader, or advocate, you can be part of a movement that expands equity in life for millions.
+            </p>
+            <a href="#" class="btn-primary" style="
+                display: inline-block;
+                background: var(--brand-core);
+                color: #fff;
+                padding: 12px 32px;
+                border-radius: 8px;
+                font-size: 14px;
+                font-weight: 700;
+                text-decoration: none;
+            ">Partner With Equiva</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="
+        background: #fff;
+        border-top: 1px solid var(--border-light);
+        padding: 24px 32px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--grey-muted);
+    ">
+        &copy; 2025 Equiva — Equity for Health and Education Initiative. All rights reserved.
+        <br>Partnering for Equity. Creating Lasting Impact.
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

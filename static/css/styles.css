@@ -1,0 +1,358 @@
+/* ============================
+   EQUIVA DESIGN SYSTEM TOKENS
+   ============================ */
+:root {
+  --brand-core: #5cb810;
+  --brand-light: #45cb0b;
+  --brand-muted: #7fd14e;
+  --brand-mid-dark: #399639;
+  --brand-deep: #2d7a2d;
+  --brand-darkest: #1e521e;
+
+  --brand-tint-100: #f4fbf0;
+  --brand-tint-200: #eaf6df;
+  --brand-tint-300: #ddf0cc;
+  --brand-tint-400: #cee9b8;
+  --brand-tint-500: #bee2a4;
+
+  --warmth-primary: #fcb212;
+  --warmth-amber: #fa741e;
+  --warmth-orange: #ff460b;
+  --warmth-dark: #d95e0e;
+  --warmth-light: #fca84c;
+  --warmth-bg: #fef5e9;
+
+  --accent-royal: #3e55b3;
+  --accent-sky: #1ea2c6;
+  --accent-pink: #ec367d;
+
+  --text-primary: #252117;
+  --text-navy: #3e55b3;
+  --text-dark: #1A1A1A;
+  --text-charcoal: #212B36;
+
+  --grey-body: #5E5E5E;
+  --grey-muted: #9CA3AF;
+  --grey-disabled: #C8C8C8;
+  --bg-offwhite: #F6F7F7;
+  --bg-card: #FFFFFF;
+  --border-light: #EDEEEF;
+  --border-medium: #D1D5DB;
+
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-14: 14px;
+}
+
+/* ============================
+   FONTS
+   ============================ */
+@font-face {
+  font-family: 'Filson Pro';
+  src: url('../fonts/FilsonPro-Book.woff2') format('woff2');
+  font-weight: 350; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Filson Pro';
+  src: url('../fonts/FilsonPro-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Filson Pro';
+  src: url('../fonts/FilsonPro-Medium.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Filson Pro';
+  src: url('../fonts/FilsonPro-Bold.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Filson Pro';
+  src: url('../fonts/FilsonPro-Heavy.woff2') format('woff2');
+  font-weight: 800; font-style: normal; font-display: swap;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Filson Pro', sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-offwhite);
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: inherit;
+}
+
+/* ============================
+   NAVBAR (ng layout)
+   ============================ */
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 60px;
+}
+
+/* ============================
+   HERO / SECTIONS
+   ============================ */
+.hero-banner {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  position: relative;
+  overflow: hidden;
+  flex-wrap: wrap;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.pulse-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.pulse-glow-1 {
+  width: 200px; height: 200px;
+  background: var(--brand-core);
+  top: -50px; right: -50px;
+}
+
+.pulse-glow-2 {
+  width: 150px; height: 150px;
+  background: var(--warmth-primary);
+  bottom: -30px; left: 20%;
+}
+
+.content {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ============================
+   SECTION HEADER
+   ============================ */
+.section-header {
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--brand-tint-200);
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-badge {
+  width: 26px; height: 26px;
+  background: var(--brand-core);
+  color: #fff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ============================
+   STAT CARDS GRID
+   ============================ */
+.stat-cards-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  transition: box-shadow 150ms ease;
+}
+
+.stat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-card-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--grey-muted);
+}
+
+.stat-card-value {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.stat-card-footer {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.stat-pct { color: var(--grey-body); }
+.stat-absorption { color: var(--brand-deep); }
+
+.stat-bar {
+  width: 100%;
+  height: 4px;
+  background: #F0F0F0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+}
+
+/* ============================
+   CHART CARDS (unused now but kept for consistency)
+   ============================ */
+.chart-card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.chart-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chart-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.analytic-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  background: var(--brand-tint-200);
+  color: var(--brand-deep);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* ============================
+   BUTTONS
+   ============================ */
+.btn-primary {
+  background: var(--brand-core);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: var(--radius-8);
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-block;
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+.btn-primary:hover {
+  background: var(--brand-mid-dark);
+}
+
+/* ============================
+   FOOTER
+   ============================ */
+footer {
+  background: #fff;
+  border-top: 1px solid var(--border-light);
+  padding: 24px 32px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--grey-muted);
+}
+
+/* ============================
+   ANIMATION HELPERS
+   ============================ */
+.anim-card {
+  opacity: 1; /* JS will animate from 0 */
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 1200px) {
+  .stat-cards-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 16px;
+  }
+  .content {
+    padding: 16px;
+  }
+  .stat-cards-row {
+    grid-template-columns: 1fr;
+  }
+  .hero-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
