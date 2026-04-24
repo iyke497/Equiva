@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: 'Filson Pro';
-    src: url('fonts/FilsonProBook.woff2') format('woff2');
+    src: url('../fonts/FilsonPro-Book.woff2') format('woff2');
     font-weight: 350;
     font-style: normal;
     font-display: swap;
@@ -13,7 +13,7 @@
 
 @font-face {
     font-family: 'Filson Pro';
-    src: url('fonts/FilsonProRegular.woff2') format('woff2');
+    src: url('../fonts/FilsonPro-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -21,7 +21,7 @@
 
 @font-face {
     font-family: 'Filson Pro';
-    src: url('fonts/FilsonProMedium.woff2') format('woff2');
+    src: url('../fonts/FilsonPro-Medium.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -29,7 +29,7 @@
 
 @font-face {
     font-family: 'Filson Pro';
-    src: url('fonts/FilsonProBold.woff2') format('woff2');
+    src: url('../fonts/FilsonPro-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -37,7 +37,7 @@
 
 @font-face {
     font-family: 'Filson Pro';
-    src: url('fonts/FilsonProHeavy.woff2') format('woff2');
+    src: url('../fonts/FilsonPro-Heavy.woff2') format('woff2');
     font-weight: 800;
     font-style: normal;
     font-display: swap;
@@ -937,6 +937,160 @@ h1, h2, h3, h4, h5, h6 {
 .anim-card {
     opacity: 0;
     transform: translateY(30px);
+}
+
+/* ============================================
+   DARK MODE — design tokens override
+   ============================================ */
+
+[data-theme="dark"] {
+    /* Primary Brand — dark palette */
+    --green-core:      #71c014;
+    --green-light:     #32c215;
+    --green-muted:     #488c2a;
+    --green-mid-dark:  #39a225;
+    --green-deep:      #245d27;
+    --green-darkest:   #1a3f1a;
+
+    /* Green Tints (dark bg versions) */
+    --green-tint-100:  #1a2a18;
+    --green-tint-200:  #1f331c;
+    --green-tint-300:  #263e22;
+
+    /* Warmth / Amber — dark palette */
+    --gold-primary:    #f1a110;
+    --gold-amber:      #f1a110;
+    --gold-dark:       #c44d0c;
+    --gold-warm-bg:    #2a2018;
+
+    /* Text */
+    --text-primary:    #e8e4dd;
+    --text-navy:       #6b7fdb;
+    --text-dark:       #e8e4dd;
+    --text-charcoal:   #c8d0d8;
+
+    /* Neutrals */
+    --grey-body:       #b0b5bc;
+    --grey-muted:      #6b7280;
+    --grey-disabled:   #4a4f56;
+    --border-standard: #2a2d32;
+    --border-light:    #353840;
+    --bg-white:        #1a1d22;
+    --bg-offwhite:     #20232a;
+    --bg-light:        #252830;
+    --bg-card:         #2a2d32;
+
+    /* Shadows — deepen for dark */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   DARK MODE — toggle button styling
+   ============================================ */
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: var(--space-4);
+    background: transparent;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--green-tint-100);
+    border-color: var(--green-core);
+}
+
+/* Icon visibility — show sun in light mode, moon in dark mode */
+.theme-icon-sun  { display: block; }
+.theme-icon-moon { display: none;  }
+
+[data-theme="dark"] .theme-icon-sun  { display: none;  }
+[data-theme="dark"] .theme-icon-moon { display: block; }
+
+/* ============================================
+   DARK MODE — component adjustments
+   ============================================ */
+
+/* Navigation: dark mode glass effect */
+[data-theme="dark"] .landing-nav {
+    background: rgba(26, 29, 34, 0.9);
+    border-bottom-color: var(--border-light);
+}
+[data-theme="dark"] .landing-nav.scrolled {
+    background: rgba(26, 29, 34, 0.95);
+}
+
+/* Hero glow dims in dark mode */
+[data-theme="dark"] .hero-glow {
+    opacity: 0.3;
+}
+
+/* Visual cards — maintain vibrancy */
+[data-theme="dark"] .card-1 { opacity: 0.85; }
+[data-theme="dark"] .card-2 { opacity: 0.8;  }
+[data-theme="dark"] .card-3 { opacity: 0.75; }
+
+/* Service cards — slight lift in dark */
+[data-theme="dark"] .service-card {
+    background: var(--bg-card);
+    border-color: var(--border-standard);
+}
+[data-theme="dark"] .service-card:hover {
+    border-color: transparent;
+}
+
+/* Insight cards */
+[data-theme="dark"] .insight-card {
+    background: var(--bg-card);
+    border-color: var(--border-standard);
+}
+
+/* Quote card */
+[data-theme="dark"] .visual-quote {
+    background: var(--green-tint-100);
+}
+
+/* Waitlist card */
+[data-theme="dark"] .waitlist-card {
+    background: var(--bg-card);
+}
+[data-theme="dark"] .waitlist-section {
+    background: linear-gradient(135deg, #0d0f12 0%, #1a1d22 100%);
+}
+[data-theme="dark"] .form-input {
+    background: var(--bg-light);
+    border-color: var(--border-light);
+    color: var(--text-primary);
+}
+[data-theme="dark"] .form-input:focus {
+    border-color: var(--green-core);
+    box-shadow: 0 0 0 3px rgba(113, 192, 20, 0.15);
+}
+
+/* Footer */
+[data-theme="dark"] .landing-footer {
+    background: var(--bg-light);
+    border-top-color: var(--border-light);
+}
+
+/* Buttons — secondary & ghost */
+[data-theme="dark"] .btn-secondary {
+    color: var(--text-primary);
+    border-color: var(--border-light);
+}
+[data-theme="dark"] .btn-secondary:hover {
+    border-color: var(--green-core);
+    color: var(--green-core);
 }
 
 /* ============================================

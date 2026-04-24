@@ -218,6 +218,31 @@
             });
         });
     }
+
+    // ============================================
+    // DARK MODE TOGGLE
+    // ============================================
+
+    function initThemeToggle() {
+        const toggle = document.getElementById('theme-toggle');
+        if (!toggle) return;
+        
+        // Check saved preference or system preference
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (saved === 'dark' || (!saved && prefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+        
+        toggle.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const newTheme = isDark ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
     
     // ============================================
     // FORM HANDLING
@@ -391,6 +416,9 @@
         
         // Initialize navigation
         initNavigation();
+
+        // Initialize dark mode toggle
+        initThemeToggle();
         
         // Initialize form
         initSubscribeForm();
