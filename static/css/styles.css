@@ -86,9 +86,9 @@
     --grey-disabled:   #C8C8C8;
     --border-standard: #F4F4F4;
     --border-light:    #EDEEEF;
-    --bg-white:        #FFFFFF;
-    --bg-offwhite:     #F9F9F9;
-    --bg-light:        #F4F4F4;
+    --bg-white:        #FFFDF9;   /* warm white — replaces #FFFFFF overwrite of design system */
+    --bg-offwhite:     #F8F5EF;   /* warm cream — replaces #F9F9F9 overwrite of design system */
+    --bg-light:        #F3F0E9;   /* warm grey-beige — replaces #F4F4F4 overwrite of design system */
     --bg-card:         #F6F7F7;
 
     /* Status */
