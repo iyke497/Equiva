@@ -365,6 +365,34 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 500px;
 }
 
+/* ============================================
+   ABOUT PAGE
+   ============================================ */
+
+.about-page-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--space-64) 0;
+}
+
+.about-page-title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-24);
+    color: var(--text-dark);
+}
+
+.about-page-subtitle {
+    font-size: 16px;
+    color: var(--grey-body);
+    line-height: 1.6;
+    max-width: 540px;
+    margin: 0 auto;
+}
+
 .hero-actions {
     display: flex;
     gap: var(--space-16);
@@ -534,6 +562,12 @@ h1, h2, h3, h4, h5, h6 {
 .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-24);
+}
+
+.services-grid-split {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-24);
 }
 
@@ -1107,7 +1141,6 @@ h1, h2, h3, h4, h5, h6 {
         margin-left: auto;
         margin-right: auto;
     }
-    
     .hero-actions {
         justify-content: center;
     }
@@ -1121,6 +1154,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .services-grid,
+    .services-grid-split,
     .insights-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1143,7 +1177,8 @@ h1, h2, h3, h4, h5, h6 {
         display: none;
     }
     
-    .hero-title {
+    .hero-title,
+    .about-page-title {
         font-size: 48px;
     }
     
@@ -1152,6 +1187,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .services-grid,
+    .services-grid-split,
     .insights-grid {
         grid-template-columns: 1fr;
     }

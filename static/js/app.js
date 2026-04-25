@@ -389,8 +389,18 @@
     // Add new pages here as they're built.
     // ============================================
 
+    var pageAbout = {
+        init: function() {
+            Anim.startAmbient();
+        },
+        teardown: function() {
+            Anim.killScrollTriggers();
+        }
+    };
+
     var pages = {
-        home: pageHome
+        home: pageHome,
+        about: pageAbout
     };
 
     // ============================================
