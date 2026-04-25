@@ -22,5 +22,9 @@ def contact():
 def join_us():
     return render_template("join-us.html", page_name="join_us")
 
+@app.route("/partner-with-us")
+def partner_with_us():
+    return render_template("donor-pitch.html", page_name="partner_with_us")
+
 if __name__ == "__main__":
     app.run(debug=True)

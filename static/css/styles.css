@@ -240,6 +240,12 @@ h1, h2, h3, h4, h5, h6 {
     gap: var(--space-8);
 }
 
+.nav-logo {
+    height: 72px;
+    width: auto;
+    display: block;
+}
+
 .brand-icon {
     font-size: 28px;
     color: var(--green-core);
@@ -911,7 +917,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-brand .brand-text {
-    font-size: 18px;
+    display: none;
+}
+
+.footer-logo {
+    height: 96px;
+    width: auto;
+    display: block;
+    margin-bottom: var(--space-12);
 }
 
 .footer-tagline {

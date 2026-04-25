@@ -14,7 +14,7 @@
     <link rel="preload" href="{{ url_for('static', filename='fonts/FilsonPro-Heavy.woff2') }}" as="font" type="font/woff2" crossorigin>
 
     <!-- Styles -->
-    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon-light.ico') }}" id="favicon">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
     {% block head_extra %}{% endblock %}
@@ -29,11 +29,11 @@
         <nav class="landing-nav">
             <div class="nav-container">
                 <a href="{{ url_for('index') }}" class="nav-brand">
-                    <span class="brand-icon">⟠</span>
-                    <span class="brand-text">Equiva</span>
+                    <img src="{{ url_for('static', filename='images/equiva-light.svg') }}" alt="Equiva" class="nav-logo theme-logo" id="nav-logo">
                 </a>
                 <div class="nav-links">
                     <a href="{{ url_for('what_we_do') }}" class="nav-link">Our Work</a>
+                    <a href="{{ url_for('partner_with_us') }}" class="nav-link">Partner With Us</a>
                     <a href="{{ url_for('join_us') }}" class="nav-link">Join Us</a>
                     <a href="{{ url_for('about') }}" class="nav-link">About</a>
                     <a href="{{ url_for('contact') }}" class="nav-link">Contact</a>
@@ -59,8 +59,7 @@
             <div class="container">
                 <div class="footer-grid">
                     <div class="footer-brand">
-                        <span class="brand-icon">⟠</span>
-                        <span class="brand-text">Equiva</span>
+                        <img src="{{ url_for('static', filename='images/equiva-light.svg') }}" alt="Equiva" class="footer-logo theme-logo">
                         <p class="footer-tagline">Driving social impact through innovative programs.</p>
                     </div>
                     <div class="footer-links">

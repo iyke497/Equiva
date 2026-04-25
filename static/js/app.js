@@ -98,10 +98,64 @@
         },
 
         // ---- Page-entry orchestration ----
-        // Scans container for .anim-card, .chart-wrap, etc.
-        // Pages call this in their init().
+        // Scans container for .anim-card, .chart-wrap, .service-card, etc.
+        // All non-home pages call this in their init().
         animatePage: function(container) {
             if (!this.enabled) return;
+
+            // Hero entrance (generic — for .about-page-header pages)
+            var heroBadge = container.querySelector('.about-page-header .section-badge');
+            var heroTitle = container.querySelector('.about-page-title');
+            var heroSubtitle = container.querySelector('.about-page-subtitle');
+            if (heroBadge || heroTitle || heroSubtitle) {
+                var tl = gsap.timeline();
+                if (heroBadge) tl.fromTo(heroBadge,
+                    { opacity: 0, y: 20 },
+                    { opacity: 1, y: 0, duration: 0.5 }
+                );
+                if (heroTitle) tl.fromTo(heroTitle,
+                    { opacity: 0, y: 30 },
+                    { opacity: 1, y: 0, duration: 0.7, ease: 'back.out(1.4)' },
+                    '-=0.3'
+                );
+                if (heroSubtitle) tl.fromTo(heroSubtitle,
+                    { opacity: 0, y: 20 },
+                    { opacity: 1, y: 0, duration: 0.5 },
+                    '-=0.4'
+                );
+            }
+
+            // Service cards reveal (scroll-triggered)
+            var serviceCards = container.querySelectorAll('.service-card');
+            if (serviceCards.length) {
+                ScrollTrigger.batch(serviceCards, {
+                    onEnter: function(batch) {
+                        gsap.fromTo(batch,
+                            { opacity: 0, y: 40 },
+                            { opacity: 1, y: 0, stagger: 0.12, duration: 0.6,
+                              ease: 'back.out(1.4)' }
+                        );
+                    },
+                    start: 'top 85%',
+                    once: true
+                });
+            }
+
+            // Insight cards reveal (scroll-triggered)
+            var insightCards = container.querySelectorAll('.insight-card');
+            if (insightCards.length) {
+                ScrollTrigger.batch(insightCards, {
+                    onEnter: function(batch) {
+                        gsap.fromTo(batch,
+                            { opacity: 0, x: -30 },
+                            { opacity: 1, x: 0, stagger: 0.1, duration: 0.6,
+                              ease: 'power3.out' }
+                        );
+                    },
+                    start: 'top 85%',
+                    once: true
+                });
+            }
 
             // Above-fold card reveal (back.out bounce)
             var aboveCards = container.querySelectorAll('.anim-card');
@@ -391,6 +445,7 @@
 
     var pageAbout = {
         init: function() {
+            Anim.animatePage(document.querySelector('.landing-wrapper'));
             Anim.startAmbient();
         },
         teardown: function() {
@@ -400,6 +455,7 @@
 
     var pageWhatWeDo = {
         init: function() {
+            Anim.animatePage(document.querySelector('.landing-wrapper'));
             Anim.startAmbient();
         },
         teardown: function() {
@@ -409,6 +465,7 @@
 
     var pageContact = {
         init: function() {
+            Anim.animatePage(document.querySelector('.landing-wrapper'));
             Anim.startAmbient();
             initContactForm();
         },
@@ -419,6 +476,17 @@
 
     var pageJoinUs = {
         init: function() {
+            Anim.animatePage(document.querySelector('.landing-wrapper'));
+            Anim.startAmbient();
+        },
+        teardown: function() {
+            Anim.killScrollTriggers();
+        }
+    };
+
+    var pageDonorPitch = {
+        init: function() {
+            Anim.animatePage(document.querySelector('.landing-wrapper'));
             Anim.startAmbient();
         },
         teardown: function() {
@@ -431,7 +499,8 @@
         about: pageAbout,
         what_we_do: pageWhatWeDo,
         contact: pageContact,
-        join_us: pageJoinUs
+        join_us: pageJoinUs,
+        partner_with_us: pageDonorPitch
     };
 
     // ============================================
@@ -454,22 +523,42 @@
     // Attached once, shared across all pages.
     // ============================================
 
+    function setThemeAssets(theme) {
+        var favicon = document.getElementById('favicon');
+        if (favicon) {
+            favicon.href = theme === 'dark'
+                ? '/static/images/favicon-dark.ico'
+                : '/static/images/favicon-light.ico';
+        }
+        var logos = document.querySelectorAll('.theme-logo');
+        logos.forEach(function(img) {
+            img.src = theme === 'dark'
+                ? '/static/images/equiva-dark.svg'
+                : '/static/images/equiva-light.svg';
+        });
+    }
+
     function initThemeToggle() {
         var toggle = document.getElementById('theme-toggle');
         if (!toggle) return;
 
         var saved = localStorage.getItem('theme');
         var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var initialTheme = 'light';
 
         if (saved === 'dark' || (!saved && prefersDark)) {
             document.documentElement.setAttribute('data-theme', 'dark');
+            initialTheme = 'dark';
         }
+
+        setThemeAssets(initialTheme);
 
         toggle.addEventListener('click', function() {
             var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             var newTheme = isDark ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
+            setThemeAssets(newTheme);
         });
     }
 
