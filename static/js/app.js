@@ -236,6 +236,20 @@
         startAmbient: function() {
             if (!this.enabled) return;
 
+            // Badge dot pulse
+            var badgeDot = document.querySelector('.badge-dot');
+            if (badgeDot && !badgeDot._gsapBreathing) {
+                badgeDot._gsapBreathing = true;
+                gsap.to(badgeDot, {
+                    scale: 1.1,
+                    opacity: 0.6,
+                    duration: 1,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut'
+                });
+            }
+
             // Pulse dot breathing
             var dot = document.querySelector('.pulse-dot');
             if (dot && !dot._gsapBreathing) {
@@ -510,10 +524,7 @@
 
     function navigate(pageName, data) {
         var page = pages[pageName];
-        if (!page) {
-            console.error('Equiva: unknown page "' + pageName + '"');
-            return;
-        }
+        if (!page) return;
         Anim.killScrollTriggers();
         page.init(data || {});
     }
