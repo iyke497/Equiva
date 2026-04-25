@@ -398,9 +398,40 @@
         }
     };
 
+    var pageWhatWeDo = {
+        init: function() {
+            Anim.startAmbient();
+        },
+        teardown: function() {
+            Anim.killScrollTriggers();
+        }
+    };
+
+    var pageContact = {
+        init: function() {
+            Anim.startAmbient();
+            initContactForm();
+        },
+        teardown: function() {
+            Anim.killScrollTriggers();
+        }
+    };
+
+    var pageJoinUs = {
+        init: function() {
+            Anim.startAmbient();
+        },
+        teardown: function() {
+            Anim.killScrollTriggers();
+        }
+    };
+
     var pages = {
         home: pageHome,
-        about: pageAbout
+        about: pageAbout,
+        what_we_do: pageWhatWeDo,
+        contact: pageContact,
+        join_us: pageJoinUs
     };
 
     // ============================================
@@ -596,6 +627,87 @@
         }
 
         function showMessage(text, type) {
+            if (!messageEl) return;
+            messageEl.textContent = text;
+            messageEl.className = 'form-message ' + type;
+
+            if (type === 'success') {
+                setTimeout(function() {
+                    messageEl.textContent = '';
+                    messageEl.className = 'form-message';
+                }, 5000);
+            }
+        }
+    }
+
+    function initContactForm() {
+        var form = document.getElementById('contact-form');
+        var messageEl = document.getElementById('contact-form-message');
+        var submitBtn = document.getElementById('contact-submit-btn');
+
+        if (!form || !submitBtn) return;
+
+        var btnText = submitBtn.querySelector('.btn-text');
+        var btnSpinner = submitBtn.querySelector('.btn-spinner');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            var emailInput = document.getElementById('contact-email');
+            var nameInput = document.getElementById('contact-name');
+            var messageInput = document.getElementById('contact-message');
+            var email = emailInput.value.trim();
+
+            if (!email) {
+                showContactMessage('Please enter your email address', 'error');
+                return;
+            }
+            if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+                showContactMessage('Please enter a valid email address', 'error');
+                return;
+            }
+
+            setContactLoading(true);
+
+            try {
+                var response = await fetch('/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: nameInput ? nameInput.value.trim() : '',
+                        email: email,
+                        topic: document.getElementById('contact-topic').value,
+                        message: messageInput ? messageInput.value.trim() : ''
+                    })
+                });
+
+                if (response.ok) {
+                    showContactMessage('Message sent. We\'ll be in touch within 48 hours.', 'success');
+                    form.reset();
+                } else {
+                    var data = await response.json();
+                    showContactMessage(data.message || 'Something went wrong. Please try again.', 'error');
+                }
+            } catch (error) {
+                showContactMessage('Network error. Please try again.', 'error');
+            } finally {
+                setContactLoading(false);
+            }
+        });
+
+        function setContactLoading(isLoading) {
+            if (isLoading) {
+                submitBtn.disabled = true;
+                if (btnText) btnText.style.display = 'none';
+                if (btnSpinner) btnSpinner.style.display = 'inline';
+            } else {
+                submitBtn.disabled = false;
+                if (btnText) btnText.style.display = 'inline';
+                if (btnSpinner) btnSpinner.style.display = 'none';
+            }
+        }
+
+        function showContactMessage(text, type) {
             if (!messageEl) return;
             messageEl.textContent = text;
             messageEl.className = 'form-message ' + type;

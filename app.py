@@ -10,5 +10,17 @@ def index():
 def about():
     return render_template("about.html", page_name="about")
 
+@app.route("/what-we-do")
+def what_we_do():
+    return render_template("what-we-do.html", page_name="what_we_do")
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html", page_name="contact")
+
+@app.route("/join-us")
+def join_us():
+    return render_template("join-us.html", page_name="join_us")
+
 if __name__ == "__main__":
     app.run(debug=True)
