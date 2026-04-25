@@ -821,6 +821,48 @@
         }
     }
 
+    function initMobileMenu() {
+        var toggle = document.getElementById('nav-toggle');
+        var menu = document.getElementById('mobile-menu');
+        if (!toggle || !menu) return;
+
+        var isOpen = false;
+
+        function open() {
+            isOpen = true;
+            toggle.classList.add('open');
+            if (Anim.enabled) {
+                gsap.to(menu, { visibility: 'visible', opacity: 1, duration: 0.3, ease: 'power3.out' });
+            } else {
+                menu.style.visibility = 'visible';
+                menu.style.opacity = '1';
+            }
+            document.body.style.overflow = 'hidden';
+        }
+
+        function close() {
+            isOpen = false;
+            toggle.classList.remove('open');
+            if (Anim.enabled) {
+                gsap.to(menu, { opacity: 0, duration: 0.25, ease: 'power2.in',
+                    onComplete: function() { menu.style.visibility = 'hidden'; } });
+            } else {
+                menu.style.visibility = 'hidden';
+                menu.style.opacity = '0';
+            }
+            document.body.style.overflow = '';
+        }
+
+        toggle.addEventListener('click', function() {
+            if (isOpen) { close(); } else { open(); }
+        });
+
+        // Close on link click
+        menu.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() { close(); });
+        });
+    }
+
     // ============================================
     // APPLICATION INIT
     // Runs once on every page.
@@ -830,6 +872,7 @@
         Anim.init();
         initThemeToggle();
         initHoverEffects();
+        initMobileMenu();
 
         // Detect page from body data attribute (set in base.html)
         var pageName = document.body.getAttribute('data-page') || 'home';
