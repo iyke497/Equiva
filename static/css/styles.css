@@ -642,6 +642,71 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: var(--space-24);
 }
 
+/* Team cards */
+.team-grid {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-64);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.team-card {
+    flex: 0 1 260px;
+    background: var(--bg-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-standard);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-32) var(--space-24) var(--space-24);
+    text-align: center;
+    transition: box-shadow 0.25s ease;
+}
+
+.team-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.team-avatar-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto var(--space-16);
+    display: block;
+    background: var(--green-tint-100);
+}
+
+.team-avatar-svg {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto var(--space-16);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--green-tint-100);
+    color: var(--green-mid-dark);
+}
+
+.team-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+    color: var(--text-dark);
+}
+
+.team-title {
+    font-size: 13px;
+    color: var(--grey-muted);
+    margin-bottom: var(--space-12);
+}
+
+.team-desc {
+    font-size: 13px;
+    color: var(--grey-body);
+    line-height: 1.5;
+}
+
 .hero-actions {
     display: flex;
     gap: var(--space-16);
