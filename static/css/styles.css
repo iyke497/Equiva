@@ -1533,6 +1533,15 @@ h1, h2, h3, h4, h5, h6 {
         grid-template-columns: 1fr;
         gap: var(--space-32);
     }
+
+    .footer-brand {
+        text-align: center;
+    }
+
+    .footer-logo {
+        margin-left: auto;
+        margin-right: auto;
+    }
     
     .footer-links {
         grid-template-columns: 1fr;
