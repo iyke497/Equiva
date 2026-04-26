@@ -542,20 +542,46 @@ h1, h2, h3, h4, h5, h6 {
     height: 360px;
 }
 
+@media (min-width: 769px) {
+    .img-collage {
+        height: 480px;
+    }
+
+    .collage-secondary {
+        top: 280px;
+        left: 280px;
+        bottom: auto;
+        right: auto;
+    }
+
+    .collage-accent {
+        top: 280px;
+        left: 280px;
+        transform: translate(-50%, -50%);
+        background: none;
+        border: 2px solid rgba(92, 184, 16, 0.15);
+        box-shadow: 0 0 20px rgba(92, 184, 16, 0.08);
+        font-size: 0;
+        color: transparent;
+        opacity: 0.6;
+    }
+}
+
 .collage-primary {
     position: absolute;
     width: 280px;
     height: 280px;
     border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, var(--green-tint-200), var(--green-tint-300));
+    overflow: hidden;
     top: 0;
     left: 0;
     z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 48px;
-    color: var(--green-mid-dark);
+}
+
+.collage-primary img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .collage-secondary {
@@ -563,15 +589,16 @@ h1, h2, h3, h4, h5, h6 {
     width: 200px;
     height: 200px;
     border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, var(--green-tint-100), var(--green-tint-200));
+    overflow: hidden;
     bottom: 0;
     right: 0;
     z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 36px;
-    color: var(--green-core);
+}
+
+.collage-secondary img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .collage-accent {
@@ -729,6 +756,20 @@ h1, h2, h3, h4, h5, h6 {
     left: 40px;
     background: linear-gradient(135deg, var(--text-navy) 0%, var(--text-charcoal) 100%);
     opacity: 0.8;
+}
+
+.values-img-wrap {
+    max-width: 800px;
+    margin: var(--space-32) auto 0;
+}
+
+.values-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 55vh;
+    object-fit: contain;
+    border-radius: var(--radius-lg);
 }
 
 .visual-accent {
@@ -1507,11 +1548,24 @@ h1, h2, h3, h4, h5, h6 {
     .collage-secondary {
         width: 140px;
         height: 140px;
+        top: auto;
+        left: auto;
+        bottom: 0;
+        right: 0;
     }
 
     .collage-accent {
         width: 80px;
         height: 80px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, var(--green-core), var(--green-light));
+        border: none;
+        box-shadow: none;
+        font-size: inherit;
+        color: var(--white);
+        opacity: 0.9;
     }
 
     .hero-title,
