@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin · Equiva{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon-light.ico">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <a href="{{ url_for('admin.dashboard') }}" class="admin-brand">
+                <span class="brand-icon" style="font-size: 22px;">⟠</span>
+                <span class="brand-text" style="font-size: 16px;">Equiva Admin</span>
+            </a>
+            <nav class="admin-nav">
+                <a href="{{ url_for('admin.dashboard') }}" class="admin-nav-link {{ 'active' if request.endpoint == 'admin.dashboard' }}">Dashboard</a>
+                <a href="{{ url_for('admin.subscribers') }}" class="admin-nav-link {{ 'active' if request.endpoint == 'admin.subscribers' }}">Subscribers</a>
+                <a href="{{ url_for('admin.messages') }}" class="admin-nav-link {{ 'active' if request.endpoint == 'admin.messages' }}">Messages</a>
+                <a href="{{ url_for('admin.volunteers') }}" class="admin-nav-link {{ 'active' if request.endpoint == 'admin.volunteers' }}">Volunteers</a>
+                <a href="{{ url_for('admin.openings') }}" class="admin-nav-link {{ 'active' if request.endpoint == 'admin.openings' }}">Job Openings</a>
+                <hr style="border: none; border-top: 1px solid var(--border-light); margin: var(--space-16) 0;">
+                <a href="{{ url_for('main.index') }}" class="admin-nav-link" style="font-size: 12px;">← Back to site</a>
+                <a href="{{ url_for('admin.logout') }}" class="admin-nav-link" style="font-size: 12px;">Sign out</a>
+            </nav>
+        </aside>
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1 class="section-title" style="font-size: 22px;">{% block heading %}Dashboard{% endblock %}</h1>
+            </div>
+            <div class="admin-content">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+</body>
+</html>

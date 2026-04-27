@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login · Equiva</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon-light.ico">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg-offwhite); padding: var(--space-16);">
+        <div class="waitlist-card" style="max-width: 400px; width: 100%;">
+            <div class="waitlist-content" style="text-align: center;">
+                <span class="brand-icon" style="font-size: 36px; display: block; margin-bottom: var(--space-8);">⟠</span>
+                <h2 style="font-size: 20px; margin-bottom: var(--space-8);">Admin</h2>
+                <p style="font-size: 13px; color: var(--grey-body); margin-bottom: var(--space-24);">Enter the admin password to continue.</p>
+                {% if error %}
+                <div class="form-message error" style="margin-bottom: var(--space-16);">{{ error }}</div>
+                {% endif %}
+                <form method="POST">
+                    <div class="form-group">
+                        <input type="password" name="password" placeholder="Admin password" class="form-input" required autofocus>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Sign in</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

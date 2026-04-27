@@ -1,0 +1,38 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ 'Edit' if opening else 'New' }} Opening · Equiva Admin{% endblock %}
+{% block heading %}{{ 'Edit' if opening else 'New' }} Job Opening{% endblock %}
+{% block content %}
+<form method="POST" class="admin-form">
+    <div class="form-group">
+        <label for="title">Title *</label>
+        <input type="text" id="title" name="title" value="{{ opening.title if opening else '' }}" class="form-input" required>
+    </div>
+    <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" value="{{ opening.location if opening else '' }}" class="form-input" placeholder="e.g. Nairobi, Kenya / Remote">
+    </div>
+    <div class="form-group">
+        <label for="type">Type</label>
+        <select id="type" name="type" class="form-input">
+            <option value="">— Select —</option>
+            <option value="Full-time" {{ 'selected' if opening and opening.type == 'Full-time' }}>Full-time</option>
+            <option value="Part-time" {{ 'selected' if opening and opening.type == 'Part-time' }}>Part-time</option>
+            <option value="Contract" {{ 'selected' if opening and opening.type == 'Contract' }}>Contract</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" class="form-input" placeholder="Role description, responsibilities, requirements…">{{ opening.description if opening else '' }}</textarea>
+    </div>
+    <div class="form-group">
+        <label style="display: flex; align-items: center; gap: var(--space-8); cursor: pointer;">
+            <input type="checkbox" name="is_active" {{ 'checked' if not opening or opening.is_active else '' }} style="width: auto;">
+            <span style="font-size: 13px;">Active (visible on site)</span>
+        </label>
+    </div>
+    <div style="display: flex; gap: var(--space-12);">
+        <button type="submit" class="btn-primary">{{ 'Update' if opening else 'Create' }} Opening</button>
+        <a href="{{ url_for('admin.openings') }}" class="btn-secondary" style="display: inline-flex; align-items: center; padding: var(--space-12) var(--space-24);">Cancel</a>
+    </div>
+</form>
+{% endblock %}
