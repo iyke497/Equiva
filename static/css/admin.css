@@ -21,6 +21,12 @@
     margin-bottom: var(--space-32);
 }
 
+.admin-logo {
+    height: 28px;
+    width: auto;
+    display: block;
+}
+
 .admin-nav {
     display: flex;
     flex-direction: column;

@@ -12,8 +12,8 @@
     <div class="admin-layout">
         <aside class="admin-sidebar">
             <a href="{{ url_for('admin.dashboard') }}" class="admin-brand">
-                <span class="brand-icon" style="font-size: 22px;">⟠</span>
-                <span class="brand-text" style="font-size: 16px;">Equiva Admin</span>
+                <img src="/static/images/equiva-light.svg" alt="Equiva" class="admin-logo">
+                <span style="font-size: 15px; font-weight: 700; color: var(--text-dark);">Equiva Admin</span>
             </a>
             <nav class="admin-nav">
                 <a href="{{ url_for('admin.dashboard') }}" class="admin-nav-link {{ 'active' if request.endpoint == 'admin.dashboard' }}">Dashboard</a>
