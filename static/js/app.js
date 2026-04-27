@@ -492,6 +492,7 @@
         init: function() {
             Anim.animatePage(document.querySelector('.landing-wrapper'));
             Anim.startAmbient();
+            initVolunteerForm();
         },
         teardown: function() {
             Anim.killScrollTriggers();
@@ -812,6 +813,86 @@
             messageEl.textContent = text;
             messageEl.className = 'form-message ' + type;
 
+            if (type === 'success') {
+                setTimeout(function() {
+                    messageEl.textContent = '';
+                    messageEl.className = 'form-message';
+                }, 5000);
+            }
+        }
+    }
+
+    function initVolunteerForm() {
+        var form = document.getElementById('volunteer-form');
+        var messageEl = document.getElementById('volunteer-form-message');
+        var submitBtn = document.getElementById('volunteer-submit-btn');
+        if (!form || !submitBtn) return;
+
+        var btnText = submitBtn.querySelector('.btn-text');
+        var btnSpinner = submitBtn.querySelector('.btn-spinner');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            var emailInput = document.getElementById('vol-email');
+            var nameInput = document.getElementById('vol-name');
+            var skillsInput = document.getElementById('vol-skills');
+            var messageInput = document.getElementById('vol-message');
+            var email = emailInput.value.trim();
+
+            if (!email) {
+                show('Please enter your email address', 'error');
+                return;
+            }
+            if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+                show('Please enter a valid email address', 'error');
+                return;
+            }
+
+            setLoading(true);
+
+            try {
+                var response = await fetch('/volunteer', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: nameInput ? nameInput.value.trim() : '',
+                        email: email,
+                        skills: skillsInput ? skillsInput.value.trim() : '',
+                        message: messageInput ? messageInput.value.trim() : ''
+                    })
+                });
+                var data = await response.json();
+
+                if (response.ok) {
+                    show(data.message, 'success');
+                    form.reset();
+                } else {
+                    show(data.message || 'Something went wrong. Please try again.', 'error');
+                }
+            } catch (error) {
+                show('Network error. Please try again.', 'error');
+            } finally {
+                setLoading(false);
+            }
+        });
+
+        function setLoading(isLoading) {
+            if (isLoading) {
+                submitBtn.disabled = true;
+                if (btnText) btnText.style.display = 'none';
+                if (btnSpinner) btnSpinner.style.display = 'inline';
+            } else {
+                submitBtn.disabled = false;
+                if (btnText) btnText.style.display = 'inline';
+                if (btnSpinner) btnSpinner.style.display = 'none';
+            }
+        }
+
+        function show(text, type) {
+            if (!messageEl) return;
+            messageEl.textContent = text;
+            messageEl.className = 'form-message ' + type;
             if (type === 'success') {
                 setTimeout(function() {
                     messageEl.textContent = '';

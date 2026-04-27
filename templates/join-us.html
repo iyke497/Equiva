@@ -14,7 +14,7 @@
         <div class="about-page-header">
             <span class="section-badge">Join Us</span>
             <h1 class="about-page-title">Do work that <span class="hero-accent">matters</span></h1>
-            <p class="about-page-subtitle">We're always looking for passionate people who want to put their skills to work solving real-world challenges.</p>
+            <p class="about-page-subtitle">Whether you're a policymaker, donor, community leader, or advocate — you can be part of a movement that expands equity in life for millions.</p>
         </div>
     </div>
 </section>
@@ -43,7 +43,7 @@
                         <path d="M12 2v20M17 7l-5-5-5 5M7 17l5 5 5-5"/>
                     </svg>
                 </div>
-                <h3 class="service-title">Growth & Learning</h3>
+                <h3 class="service-title">Growth &amp; Learning</h3>
                 <p class="service-description">Continuous development, mentorship, and the autonomy to lead initiatives from day one.</p>
             </div>
             <div class="service-card">
@@ -59,25 +59,37 @@
     </div>
 </section>
 
-<!-- Openings & Volunteer -->
+<!-- Current Openings -->
 <section class="services-section" id="openings">
     <div class="container">
-        <div class="services-grid-split">
-            <div class="service-card">
-                <div class="service-icon">
+        <div class="section-header">
+            <span class="section-badge">Current Openings</span>
+            <h2 class="section-title">We're growing</h2>
+            <p class="section-subtitle">No current openings at this time. Check back soon for roles in programme management, data analytics, policy, and field operations.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" style="text-align: center; grid-column: 2;">
+                <div class="service-icon" style="margin: 0 auto var(--space-16);">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                        <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                        <path d="M12 8v4l2 2"/><circle cx="12" cy="12" r="9"/>
                     </svg>
                 </div>
-                <h3 class="service-title">Current Openings</h3>
-                <p class="service-description">We're growing. Check back soon for full-time roles in program management, data analytics, policy, and field operations.</p>
-                <a href="{{ url_for('main.contact') }}" class="btn-primary btn-card-mt">
-                    Express interest
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </a>
+                <h3 class="service-title">No positions open right now</h3>
+                <p class="service-description">We're a growing team. When new roles open, they'll be posted here. In the meantime, consider volunteering with us — it's a great way to get to know Equiva and contribute to live programmes.</p>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- Volunteer Registration -->
+<section class="services-section" id="volunteer">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Volunteer With Us</span>
+            <h2 class="section-title">Bring your skills, make an impact</h2>
+            <p class="section-subtitle">Whether you're in research, data, design, or community engagement — there's a place for you at Equiva.</p>
+        </div>
+        <div class="services-grid-split">
             <div class="service-card">
                 <div class="service-icon">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -86,14 +98,57 @@
                         <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
                     </svg>
                 </div>
-                <h3 class="service-title">Volunteer With Us</h3>
-                <p class="service-description">Bring your skills — research, design, data, community engagement — and contribute to live programs in the field or remotely.</p>
-                <a href="{{ url_for('main.contact') }}" class="btn-primary btn-card-mt">
-                    Get involved
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                <h3 class="service-title">Register your interest</h3>
+                <form id="volunteer-form" class="subscribe-form" style="margin-top: var(--space-20);">
+                    <div class="form-group">
+                        <input type="text" id="vol-name" name="name" placeholder="Your name" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="vol-email" name="email" placeholder="Your email address" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="vol-skills" name="skills" placeholder="Skills / areas of interest" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="vol-message" name="message" placeholder="Tell us a bit about yourself and how you'd like to contribute" class="form-input" rows="3" style="resize: vertical; min-height: 80px;"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary form-btn-full" id="volunteer-submit-btn">
+                        <span class="btn-text">Send application</span>
+                        <span class="btn-spinner" style="display: none;">⏳</span>
+                    </button>
+                </form>
+                <div id="volunteer-form-message" class="form-message"></div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M3 12h4l2-6 4 12 2-6h4"/>
                     </svg>
-                </a>
+                </div>
+                <h3 class="service-title">What you can do</h3>
+                <div class="about-values" style="gap: var(--space-12);">
+                    <div class="value-item">
+                        <span class="value-number">01</span>
+                        <div class="value-content">
+                            <h5>Research &amp; Data</h5>
+                            <p>Help with data collection, analysis, and dashboards that guide decisions.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-number">02</span>
+                        <div class="value-content">
+                            <h5>Communications &amp; Design</h5>
+                            <p>Support advocacy campaigns, reports, and visual storytelling.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-number">03</span>
+                        <div class="value-content">
+                            <h5>Field Support</h5>
+                            <p>Contribute to community engagement and programme delivery.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
