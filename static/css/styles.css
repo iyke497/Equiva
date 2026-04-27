@@ -467,6 +467,11 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: var(--space-24);
 }
 
+[data-theme="dark"] .hero-badge {
+    background: rgba(113, 192, 20, 0.15);
+    color: var(--green-light);
+}
+
 .badge-dot {
     width: 8px;
     height: 8px;
