@@ -290,7 +290,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-cta {
     padding: var(--space-8) var(--space-16);
     background: var(--green-core);
-    color: white;
+    color: var(--white);
     border: none;
     border-radius: var(--radius-md);
     font-size: 13.5px;
@@ -721,7 +721,7 @@ h1, h2, h3, h4, h5, h6 {
     gap: var(--space-8);
     padding: var(--space-12) var(--space-24);
     background: var(--green-core);
-    color: white;
+    color: var(--white);
     border: none;
     border-radius: var(--radius-md);
     font-size: 14px;
@@ -890,7 +890,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-badge.light {
     background: rgba(255, 255, 255, 0.2);
-    color: white;
+    color: var(--white);
 }
 
 [data-theme="dark"] .section-badge.light {
@@ -972,13 +972,6 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-standard);
     box-shadow: var(--shadow-sm);
-    transition: all 0.25s ease;
-}
-
-.service-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-4px);
-    border-color: transparent;
 }
 
 .service-icon {
@@ -1508,7 +1501,7 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--bg-card);
 }
 [data-theme="dark"] .waitlist-section {
-    background: linear-gradient(135deg, #0d0f12 0%, #1a1d22 100%);
+    background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-card) 100%);
 }
 [data-theme="dark"] .form-input {
     background: var(--bg-light);
