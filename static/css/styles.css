@@ -107,8 +107,10 @@
     --space-2:  2px;
     --space-4:  4px;
     --space-8:  8px;
+    --space-10: 10px;   /* override: for CTA button padding */
     --space-12: 12px;
     --space-16: 16px;
+    --space-20: 20px;   /* override: tighter than --space-24 for value-item gaps */
     --space-24: 24px;
     --space-32: 32px;
     --space-48: 48px;
@@ -881,9 +883,19 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: var(--space-16);
 }
 
+[data-theme="dark"] .section-badge {
+    background: rgba(113, 192, 20, 0.15);
+    color: var(--green-light);
+}
+
 .section-badge.light {
     background: rgba(255, 255, 255, 0.2);
     color: white;
+}
+
+[data-theme="dark"] .section-badge.light {
+    background: rgba(113, 192, 20, 0.15);
+    color: var(--green-light);
 }
 
 /* Services Grid */
@@ -1205,71 +1217,48 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-.waitlist-title {
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: var(--space-16);
-    color: var(--text-dark);
-}
-
-.waitlist-description {
-    font-size: 15px;
-    color: var(--grey-body);
-    margin-bottom: var(--space-32);
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.subscribe-form {
-    max-width: 400px;
-    margin: 0 auto var(--space-16);
-}
-
-.form-group {
-    margin-bottom: var(--space-16);
-}
-
-.form-input {
-    width: 100%;
-    padding: var(--space-12) var(--space-16);
-    font-size: 14px;
-    font-family: inherit;
+/* Utility classes — replaces inline styles across templates */
+.card-bordered {
     border: 1px solid var(--border-light);
-    border-radius: var(--radius-md);
-    background: var(--bg-white);
-    transition: all 0.15s ease;
 }
 
-.form-input:focus {
-    outline: none;
-    border-color: var(--green-core);
-    box-shadow: 0 0 0 3px rgba(92, 184, 16, 0.12);
+.actions-centered {
+    justify-content: center;
 }
 
-.form-input::placeholder {
-    color: var(--grey-muted);
+.form-input-full {
+    width: 100%;
 }
 
-.form-message {
-    min-height: 40px;
-    margin-bottom: var(--space-12);
-    font-size: 13px;
+.form-btn-full {
+    width: 100%;
+    justify-content: center;
 }
 
-.form-message.success {
-    color: var(--status-success);
+.form-mt {
+    margin-top: var(--space-20);
 }
 
-.form-message.error {
-    color: var(--status-error);
+.textarea-sm {
+    resize: vertical;
+    min-height: 100px;
 }
 
-.form-disclaimer {
-    font-size: 11px;
-    color: var(--grey-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.about-values-tight {
+    margin-top: var(--space-20);
+    gap: var(--space-12);
+}
+
+.about-values-top {
+    margin-top: 0;
+}
+
+.value-number-sm {
+    font-size: 18px;
+}
+
+.btn-card-mt {
+    margin-top: var(--space-16);
 }
 
 /* ============================================
