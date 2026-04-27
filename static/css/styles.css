@@ -1217,6 +1217,36 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
+.subscribe-form {
+    max-width: 400px;
+    margin: 0 auto var(--space-16);
+}
+
+.form-group {
+    margin-bottom: var(--space-16);
+}
+
+.form-input {
+    width: 100%;
+    padding: var(--space-12) var(--space-16);
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    background: var(--bg-white);
+    color: var(--text-primary);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--green-core);
+    box-shadow: 0 0 0 3px rgba(92, 184, 16, 0.12);
+}
+
+.form-input::placeholder {
+    color: var(--grey-muted);
+}
+
 /* Utility classes — replaces inline styles across templates */
 .card-bordered {
     border: 1px solid var(--border-light);
