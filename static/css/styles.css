@@ -1289,6 +1289,14 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 18px;
 }
 
+.contact-icon {
+    color: var(--green-mid-dark);
+}
+
+[data-theme="dark"] .contact-icon {
+    color: var(--green-light);
+}
+
 .btn-card-mt {
     margin-top: var(--space-16);
 }
