@@ -863,11 +863,15 @@ h1, h2, h3, h4, h5, h6 {
 .services-section,
 .insights-section,
 .about-section {
-    padding: var(--space-96) 0;
+    padding: var(--space-64) 0;
 }
 
 .services-section {
     background: var(--bg-offwhite);
+}
+
+[data-theme="dark"] .services-section {
+    background: var(--bg-card);
 }
 
 .section-header {
@@ -1174,7 +1178,7 @@ h1, h2, h3, h4, h5, h6 {
    ============================================ */
 
 .waitlist-section {
-    padding: var(--space-96) 0;
+    padding: var(--space-64) 0;
     background: linear-gradient(135deg, var(--text-dark) 0%, var(--text-charcoal) 100%);
 }
 
