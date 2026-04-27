@@ -65,8 +65,33 @@
         <div class="section-header">
             <span class="section-badge">Current Openings</span>
             <h2 class="section-title">We're growing</h2>
-            <p class="section-subtitle">No current openings at this time. Check back soon for roles in programme management, data analytics, policy, and field operations.</p>
+            <p class="section-subtitle">{% if openings %}Join a team committed to equity and lasting impact.{% else %}No current openings at this time. Check back soon for roles in programme management, data analytics, policy, and field operations.{% endif %}</p>
         </div>
+        {% if openings %}
+        <div class="services-grid">
+            {% for opening in openings %}
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">{{ opening.title }}</h3>
+                <p class="service-description">{{ opening.description }}</p>
+                <div class="about-values" style="gap: var(--space-8); margin-top: var(--space-8);">
+                    <div class="value-item">
+                        <span class="value-number" style="font-size: 14px; color: var(--green-core);">📍</span>
+                        <div class="value-content"><p>{{ opening.location }}</p></div>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-number" style="font-size: 14px; color: var(--green-core);">💼</span>
+                        <div class="value-content"><p>{{ opening.type }}</p></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
         <div class="services-grid">
             <div class="service-card" style="text-align: center; grid-column: 2;">
                 <div class="service-icon" style="margin: 0 auto var(--space-16);">
@@ -78,6 +103,7 @@
                 <p class="service-description">We're a growing team. When new roles open, they'll be posted here. In the meantime, consider volunteering with us — it's a great way to get to know Equiva and contribute to live programmes.</p>
             </div>
         </div>
+        {% endif %}
     </div>
 </section>
 

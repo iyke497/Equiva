@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from ..models import JobOpening
 
 main_bp = Blueprint('main', __name__)
 
@@ -20,7 +21,8 @@ def contact():
 
 @main_bp.route("/join-us")
 def join_us():
-    return render_template("join-us.html", page_name="join_us")
+    openings = JobOpening.query.filter_by(is_active=True).all()
+    return render_template("join-us.html", page_name="join_us", openings=openings)
 
 @main_bp.route("/partner-with-us")
 def partner_with_us():
