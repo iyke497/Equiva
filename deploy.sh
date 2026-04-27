@@ -7,7 +7,7 @@ set -euo pipefail
 
 # --- Configuration (edit these) ---
 SERVER_USER="equiva-admin"
-SERVER_HOST="equivaafrica.org"
+SERVER_HOST="102.68.84.89"
 SSH_KEY="~/.ssh/equiva-key"
 REMOTE_DIR="/var/www/equiva"
 APP_PORT="8000"
@@ -63,6 +63,7 @@ $SSH bash <<REMOTE
 set -euo pipefail
 
 sudo mkdir -p /var/log/equiva
+sudo chown www-data:www-data /var/log/equiva
 
 sudo tee /etc/supervisor/conf.d/equiva.conf > /dev/null <<CONF
 [program:equiva]
@@ -71,7 +72,7 @@ command=${REMOTE_DIR}/.venv/bin/gunicorn \
     --bind 127.0.0.1:${APP_PORT} \
     --access-logfile /var/log/equiva/access.log \
     --error-logfile /var/log/equiva/error.log \
-    app:app
+    wsgi:app
 directory=${REMOTE_DIR}
 user=${SERVER_USER}
 autostart=true
@@ -80,7 +81,6 @@ stopasgroup=true
 killasgroup=true
 stdout_logfile=/var/log/equiva/supervisor.log
 stderr_logfile=/var/log/equiva/supervisor.err
-environment=SECRET_KEY="$(openssl rand -hex 32)"
 CONF
 
 sudo supervisorctl reread
@@ -108,7 +108,7 @@ sudo tee /etc/nginx/sites-available/equiva > /dev/null <<'NGINX'
 server {
     listen 80;
     server_name equivaafrica.org www.equivaafrica.org;
-    return 301 https://$host$request_uri;
+    return 301 https://\$host\$request_uri;
 }
 server {
     listen 443 ssl http2;
@@ -163,7 +163,7 @@ REMOTE
 # ============================================
 # STEP 7 — CREATE INSTANCE DIR
 # ============================================
-$SSH "mkdir -p ${REMOTE_DIR}/instance && sudo chown -R ${SERVER_USER}:${SERVER_USER} ${REMOTE_DIR}/instance"
+$SSH "mkdir -p ${REMOTE_DIR}/instance && sudo chown -R www-data:www-data ${REMOTE_DIR}/instance"
 
 # ============================================
 # DONE
