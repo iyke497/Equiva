@@ -71,7 +71,7 @@ command=${REMOTE_DIR}/.venv/bin/gunicorn \
     --bind 127.0.0.1:${APP_PORT} \
     --access-logfile /var/log/equiva/access.log \
     --error-logfile /var/log/equiva/error.log \
-    app:app
+    app:create_app()
 directory=${REMOTE_DIR}
 user=${SERVER_USER}
 autostart=true
