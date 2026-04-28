@@ -14,7 +14,7 @@
                 {{ g.content.get('index.hero.badge', 'Empowering 5,000+ communities') }}
             </div>
             <h1 class="hero-title">
-                {{ g.content.get('index.hero.title', 'Drive impact<br>with <span class=\'hero-accent\'>clarity</span>') }}
+                {{ g.content.get('index.hero.title', 'Drive impact<br>with <span class=\'hero-accent\'>clarity</span>') | safe }}
             </h1>
             <p class="hero-description">
                 {{ g.content.get('index.hero.subtitle', 'Equiva weaves together community insights, strategic partnerships, and evidence‑based programs to create lasting social change.') }}

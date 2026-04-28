@@ -13,7 +13,7 @@
     <div class="container">
         <div class="about-page-header">
             <span class="section-badge">{{ g.content.get('partner.hero.badge', 'Partner With Us') }}</span>
-            <h1 class="about-page-title">{{ g.content.get('partner.hero.title', 'Your partnership. Our expertise.<br><span class="hero-accent">Lasting equity</span> for all.') }}</h1>
+            <h1 class="about-page-title">{{ g.content.get('partner.hero.title', 'Your partnership. Our expertise.<br><span class="hero-accent">Lasting equity</span> for all.') | safe }}</h1>
             <p class="about-page-subtitle">{{ g.content.get('partner.hero.subtitle', 'Equiva = Equity + Value — fairness that sustains life. Every woman, child, and community deserves the chance to live with health, dignity, and opportunity.') }}</p>
         </div>
     </div>
