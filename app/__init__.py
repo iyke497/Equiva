@@ -43,7 +43,7 @@ def _seed_defaults():
     }
 
     hero_cta_defaults = {
-        'index.hero.badge': 'Empowering 5,000+ communities',
+        'index.hero.badge': 'Empowering communities across Nigeria',
         'index.hero.title': 'Drive impact<br>with <span class="hero-accent">clarity</span>',
         'index.hero.subtitle': 'Equiva weaves together community insights, strategic partnerships, and evidence‑based programs to create lasting social change.',
         'index.cta.badge': 'Limited Availability',
@@ -83,10 +83,10 @@ def _seed_defaults():
         'partner.cta.desc': 'Your partnership can unlock life‑changing impacts. Together, we can build a future where equity in life is not an aspiration but a reality, where systems protect the vulnerable, empower women, and ensure every community can thrive.',
         'partner.cta.button': 'Start the conversation',
 
-        'home.visual.image': '/static/images/about/vision-card-1.jpg',
-        'about.visual.image': '/static/images/about/mission-card-1.jpg',
-        'what-we-do.visual.image': '/static/images/about/vision-card-2.jpg',
-        'partner.visual.image': '/static/images/partners/img-1-hands.jpg',
+        'home.visual.image': '/static/images/landing/img-4-impact.jpg',
+        'about.visual.image': '/static/images/about/img-4-white-paper.jpg',
+        'what-we-do.visual.image': '/static/images/workwedo/img-2-delivery.jpg',
+        'partner.visual.image': '/static/images/partners/img-2-achieve.jpg',
     }
 
     for key, val in {**global_defaults, **hero_cta_defaults}.items():
