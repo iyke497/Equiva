@@ -31,10 +31,9 @@ def create_app():
     return app
 
 def _seed_defaults():
-    if SiteContent.query.count() > 0:
-        return
+    seeded = SiteContent.query.count() > 0
 
-    defaults = {
+    global_defaults = {
         'global.footer_tagline': 'Driving social impact through innovative programs.',
         'global.copyright': '© 2026 Equiva. All rights reserved.',
         'contact.email': 'info@equivaafrica.org',
@@ -42,32 +41,78 @@ def _seed_defaults():
         'contact.phone_2': '+234 806 166 4368',
         'contact.address': 'Abuja, Nigeria',
     }
-    for key, val in defaults.items():
-        db.session.add(SiteContent(content_key=key, value=val))
 
-    team = [
-        TeamMember(name='Oluwafeyikemi Adeniyi', title='Managing Director, Equiva Africa',
-                   description='Leads strategic direction and programme operations across the continent.',
-                   photo_path='images/team/feyikemi.jpeg', sort_order=1),
-        TeamMember(name='Roli Akpolo', title='Managing Director, Equiva Africa',
-                   description='Oversees partnerships, resource mobilisation, and advocacy strategy.',
-                   photo_path='images/team/rolli.jpeg', sort_order=2),
-    ]
-    db.session.add_all(team)
+    hero_cta_defaults = {
+        'index.hero.badge': 'Empowering 5,000+ communities',
+        'index.hero.title': 'Drive impact<br>with <span class="hero-accent">clarity</span>',
+        'index.hero.subtitle': 'Equiva weaves together community insights, strategic partnerships, and evidence‑based programs to create lasting social change.',
+        'index.cta.badge': 'Limited Availability',
+        'index.cta.title': 'Ready to drive meaningful change?',
+        'index.cta.desc': 'Join our community of change‑makers and get early access to our programs. We\'ll reach out within 48 hours to discuss how we can collaborate.',
+        'index.cta.button': 'Reserve your spot',
 
-    testimonials = [
-        Testimonial(quote_text='Equiva helped us scale our impact. Our programmes are more effective, and we reach more communities than we ever thought possible.',
-                    author_name='Dr. Kwame Asante', author_title='Health Director, Accra',
-                    page_context='about', sort_order=1),
-        Testimonial(quote_text='Equiva doesn\'t just deliver a report and leave. They stay, they train our people, and they make sure the systems actually work.',
-                    author_name='Dr. Kwame Asante', author_title='Health Director, Accra',
-                    page_context='what-we-do', sort_order=1),
-        Testimonial(quote_text='Equiva helped us scale our impact. Our programs are more effective, and we reach more communities.',
-                    author_name='Dr. Kwame Asante', author_title='Health Director, Accra',
-                    page_context='home', sort_order=1),
-        Testimonial(quote_text='Equiva doesn\'t just deliver a report and leave. They stay, they train our people, and they make sure the systems actually work.',
-                    author_name='Dr. Kwame Asante', author_title='Health Director, Accra',
-                    page_context='partner-with-us', sort_order=1),
-    ]
-    db.session.add_all(testimonials)
+        'about.hero.badge': 'Who We Are',
+        'about.hero.title': 'Equity. Value. <span class="hero-accent">Impact.</span>',
+        'about.hero.subtitle': 'Equity for Health and Education Initiative is a charitable, non‑governmental organisation dedicated to advancing equity in every sphere of life — ensuring that every person, especially women and vulnerable communities, has fair access to quality healthcare, education, and socioeconomic opportunities.',
+        'about.cta.badge': 'Let\'s Work Together',
+        'about.cta.title': 'Partner with us to create lasting change',
+        'about.cta.desc': 'Whether you\'re a policy‑maker, donor, community leader, or advocate — you can be part of a movement that expands equity in life for millions.',
+        'about.cta.button': 'Partner with us',
+
+        'what-we-do.hero.badge': 'What We Do',
+        'what-we-do.hero.title': 'Programs that turn <span class="hero-accent">intention</span> into impact',
+        'what-we-do.hero.subtitle': 'From health systems to education, our work spans the sectors that matter most to communities — each program grounded in evidence and delivered with local partners.',
+        'what-we-do.cta.badge': 'Let\'s Get Started',
+        'what-we-do.cta.title': 'See what Equiva can do for your mission',
+        'what-we-do.cta.desc': 'Every program starts with a conversation. Tell us about your goals and we\'ll outline how our expertise can help.',
+        'what-we-do.cta.button': 'Start the conversation',
+
+        'contact.hero.badge': 'Get in Touch',
+        'contact.hero.title': 'Let\'s start a <span class="hero-accent">conversation</span>',
+        'contact.hero.subtitle': 'Whether you\'re exploring a partnership, have a question about our work, or want to join the team — we\'re listening.',
+
+        'join-us.hero.badge': 'Join Us',
+        'join-us.hero.title': 'Do work that <span class="hero-accent">matters</span>',
+        'join-us.hero.subtitle': 'Whether you\'re a policymaker, donor, community leader, or advocate — you can be part of a movement that expands equity in life for millions.',
+
+        'partner.hero.badge': 'Partner With Us',
+        'partner.hero.title': 'Your partnership. Our expertise.<br><span class="hero-accent">Lasting equity</span> for all.',
+        'partner.hero.subtitle': 'Equiva = Equity + Value — fairness that sustains life. Every woman, child, and community deserves the chance to live with health, dignity, and opportunity.',
+        'partner.cta.badge': 'Let\'s Work Together',
+        'partner.cta.title': 'Deliver value for all',
+        'partner.cta.desc': 'Your partnership can unlock life‑changing impacts. Together, we can build a future where equity in life is not an aspiration but a reality — where systems protect the vulnerable, empower women, and ensure every community can thrive.',
+        'partner.cta.button': 'Start the conversation',
+    }
+
+    for key, val in {**global_defaults, **hero_cta_defaults}.items():
+        if not SiteContent.query.filter_by(content_key=key).first():
+            db.session.add(SiteContent(content_key=key, value=val))
+
+    if not seeded:
+        team = [
+            TeamMember(name='Oluwafeyikemi Adeniyi', title='Managing Director, Equiva Africa',
+                       description='Leads strategic direction and programme operations across the continent.',
+                       photo_path='images/team/feyikemi.jpeg', sort_order=1),
+            TeamMember(name='Roli Akpolo', title='Managing Director, Equiva Africa',
+                       description='Oversees partnerships, resource mobilisation, and advocacy strategy.',
+                       photo_path='images/team/rolli.jpeg', sort_order=2),
+        ]
+        db.session.add_all(team)
+
+        testimonials = [
+            Testimonial(quote_text='Equiva helped us scale our impact. Our programmes are more effective, and we reach more communities than we ever thought possible.',
+                        author_name='Dr. Kwame Asante', author_title='Health Director, Accra',
+                        page_context='about', sort_order=1),
+            Testimonial(quote_text='Equiva doesn\'t just deliver a report and leave. They stay, they train our people, and they make sure the systems actually work.',
+                        author_name='Dr. Kwame Asante', author_title='Health Director, Accra',
+                        page_context='what-we-do', sort_order=1),
+            Testimonial(quote_text='Equiva helped us scale our impact. Our programs are more effective, and we reach more communities.',
+                        author_name='Dr. Kwame Asante', author_title='Health Director, Accra',
+                        page_context='home', sort_order=1),
+            Testimonial(quote_text='Equiva doesn\'t just deliver a report and leave. They stay, they train our people, and they make sure the systems actually work.',
+                        author_name='Dr. Kwame Asante', author_title='Health Director, Accra',
+                        page_context='partner-with-us', sort_order=1),
+        ]
+        db.session.add_all(testimonials)
+
     db.session.commit()

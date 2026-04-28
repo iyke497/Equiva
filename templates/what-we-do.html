@@ -12,9 +12,9 @@
     <div class="hero-glow hero-glow-2"></div>
     <div class="container">
         <div class="about-page-header">
-            <span class="section-badge">What We Do</span>
-            <h1 class="about-page-title">Programs that turn <span class="hero-accent">intention</span> into impact</h1>
-            <p class="about-page-subtitle">From health systems to education, our work spans the sectors that matter most to communities — each program grounded in evidence and delivered with local partners.</p>
+            <span class="section-badge">{{ g.content.get('what-we-do.hero.badge', 'What We Do') }}</span>
+            <h1 class="about-page-title">{{ g.content.get('what-we-do.hero.title', 'Programs that turn <span class="hero-accent">intention</span> into impact') }}</h1>
+            <p class="about-page-subtitle">{{ g.content.get('what-we-do.hero.subtitle', 'From health systems to education, our work spans the sectors that matter most to communities.') }}</p>
         </div>
     </div>
 </section>
@@ -187,12 +187,12 @@
     <div class="container">
         <div class="waitlist-card card-bordered">
             <div class="waitlist-content">
-                <span class="section-badge">Let's Get Started</span>
-                <h2 class="waitlist-title">See what Equiva can do for your mission</h2>
-                <p class="waitlist-description">Every program starts with a conversation. Tell us about your goals and we'll outline how our expertise can help.</p>
+                <span class="section-badge">{{ g.content.get('what-we-do.cta.badge', 'Let\'s Get Started') }}</span>
+                <h2 class="waitlist-title">{{ g.content.get('what-we-do.cta.title', 'See what Equiva can do for your mission') }}</h2>
+                <p class="waitlist-description">{{ g.content.get('what-we-do.cta.desc', 'Every program starts with a conversation. Tell us about your goals and we\'ll outline how our expertise can help.') }}</p>
                 <div class="hero-actions actions-centered">
                     <a href="{{ url_for('main.index') }}#waitlist" class="btn-primary">
-                        Start the conversation
+                        {{ g.content.get('what-we-do.cta.button', 'Start the conversation') }}
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>

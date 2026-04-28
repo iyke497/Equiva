@@ -12,9 +12,9 @@
     <div class="hero-glow hero-glow-2"></div>
     <div class="container">
         <div class="about-page-header">
-            <span class="section-badge">Who We Are</span>
-            <h1 class="about-page-title">Equity. Value. <span class="hero-accent">Impact.</span></h1>
-            <p class="about-page-subtitle">Equity for Health and Education Initiative is a charitable, non‑governmental organisation dedicated to advancing equity in every sphere of life — ensuring that every person, especially women and vulnerable communities, has fair access to quality healthcare, education, and socioeconomic opportunities.</p>
+            <span class="section-badge">{{ g.content.get('about.hero.badge', 'Who We Are') }}</span>
+            <h1 class="about-page-title">{{ g.content.get('about.hero.title', 'Equity. Value. <span class="hero-accent">Impact.</span>') }}</h1>
+            <p class="about-page-subtitle">{{ g.content.get('about.hero.subtitle', 'Equity for Health and Education Initiative is a charitable, non‑governmental organisation dedicated to advancing equity in every sphere of life.') }}</p>
         </div>
     </div>
 </section>
@@ -302,12 +302,12 @@
     <div class="container">
         <div class="waitlist-card card-bordered">
             <div class="waitlist-content">
-                <span class="section-badge">Let's Work Together</span>
-                <h2 class="waitlist-title">Partner with us to create lasting change</h2>
-                <p class="waitlist-description">Whether you're a policy‑maker, donor, community leader, or advocate — you can be part of a movement that expands equity in life for millions.</p>
+                <span class="section-badge">{{ g.content.get('about.cta.badge', 'Let\'s Work Together') }}</span>
+                <h2 class="waitlist-title">{{ g.content.get('about.cta.title', 'Partner with us to create lasting change') }}</h2>
+                <p class="waitlist-description">{{ g.content.get('about.cta.desc', 'Whether you\'re a policy‑maker, donor, community leader, or advocate — you can be part of a movement that expands equity in life for millions.') }}</p>
                 <div class="hero-actions actions-centered">
                     <a href="{{ url_for('main.partner_with_us') }}" class="btn-primary">
-                        Partner with us
+                        {{ g.content.get('about.cta.button', 'Partner with us') }}
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>

@@ -12,9 +12,9 @@
     <div class="hero-glow hero-glow-2"></div>
     <div class="container">
         <div class="about-page-header">
-            <span class="section-badge">Partner With Us</span>
-            <h1 class="about-page-title">Your partnership. Our expertise.<br><span class="hero-accent">Lasting equity</span> for all.</h1>
-            <p class="about-page-subtitle">Equiva = Equity + Value — fairness that sustains life. Every woman, child, and community deserves the chance to live with health, dignity, and opportunity.</p>
+            <span class="section-badge">{{ g.content.get('partner.hero.badge', 'Partner With Us') }}</span>
+            <h1 class="about-page-title">{{ g.content.get('partner.hero.title', 'Your partnership. Our expertise.<br><span class="hero-accent">Lasting equity</span> for all.') }}</h1>
+            <p class="about-page-subtitle">{{ g.content.get('partner.hero.subtitle', 'Equiva = Equity + Value — fairness that sustains life. Every woman, child, and community deserves the chance to live with health, dignity, and opportunity.') }}</p>
         </div>
     </div>
 </section>
@@ -241,12 +241,12 @@
     <div class="container">
         <div class="waitlist-card card-bordered">
             <div class="waitlist-content">
-                <span class="section-badge">Let's Work Together</span>
-                <h2 class="waitlist-title">Deliver value for all</h2>
-                <p class="waitlist-description">Your partnership can unlock life‑changing impacts. Together, we can build a future where equity in life is not an aspiration but a reality — where systems protect the vulnerable, empower women, and ensure every community can thrive.</p>
+                <span class="section-badge">{{ g.content.get('partner.cta.badge', 'Let\'s Work Together') }}</span>
+                <h2 class="waitlist-title">{{ g.content.get('partner.cta.title', 'Deliver value for all') }}</h2>
+                <p class="waitlist-description">{{ g.content.get('partner.cta.desc', 'Your partnership can unlock life‑changing impacts. Together, we can build a future where equity in life is not an aspiration but a reality.') }}</p>
                 <div class="hero-actions actions-centered">
                     <a href="{{ url_for('main.contact') }}" class="btn-primary">
-                        Start the conversation
+                        {{ g.content.get('partner.cta.button', 'Start the conversation') }}
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>

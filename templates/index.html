@@ -11,15 +11,13 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="badge-dot"></span>
-                Empowering communities across Africa
+                {{ g.content.get('index.hero.badge', 'Empowering 5,000+ communities') }}
             </div>
             <h1 class="hero-title">
-                Drive impact<br>
-                with <span class="hero-accent">clarity</span>
+                {{ g.content.get('index.hero.title', 'Drive impact<br>with <span class=\'hero-accent\'>clarity</span>') }}
             </h1>
             <p class="hero-description">
-                Equiva weaves together community insights, strategic partnerships, and evidence‑based programs
-                to create lasting social change.
+                {{ g.content.get('index.hero.subtitle', 'Equiva weaves together community insights, strategic partnerships, and evidence‑based programs to create lasting social change.') }}
             </p>
             <div class="hero-actions">
                 <button class="btn-primary" data-scroll-to="waitlist">
@@ -189,9 +187,9 @@
             <div class="waitlist-glow waitlist-glow-1"></div>
             <div class="waitlist-glow waitlist-glow-2"></div>
             <div class="waitlist-content">
-                <span class="section-badge light">Limited Availability</span>
-                <h2 class="waitlist-title">Ready to drive meaningful change?</h2>
-                <p class="waitlist-description">Join our community of change‑makers and get early access to our programs. We'll reach out within 48 hours to discuss how we can collaborate.</p>
+                <span class="section-badge light">{{ g.content.get('index.cta.badge', 'Limited Availability') }}</span>
+                <h2 class="waitlist-title">{{ g.content.get('index.cta.title', 'Ready to drive meaningful change?') }}</h2>
+                <p class="waitlist-description">{{ g.content.get('index.cta.desc', 'Join our community of change‑makers and get early access to our programs. We\'ll reach out within 48 hours to discuss how we can collaborate.') }}</p>
 
                 <form id="subscribe-form" class="subscribe-form">
                     <div class="form-group">
@@ -201,7 +199,7 @@
                         <input type="email" id="subscriber-email" name="email" placeholder="Your email address" class="form-input" required>
                     </div>
                     <button type="submit" class="btn-primary btn-large" id="subscribe-btn">
-                        <span class="btn-text">Reserve your spot</span>
+                        <span class="btn-text">{{ g.content.get('index.cta.button', 'Reserve your spot') }}</span>
                         <span class="btn-spinner" style="display: none;">⏳</span>
                     </button>
                 </form>
