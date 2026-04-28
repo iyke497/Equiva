@@ -3,7 +3,7 @@ from functools import wraps
 from datetime import datetime
 import csv, io
 from ..extensions import db
-from ..models import Subscriber, ContactMessage, Volunteer, JobOpening
+from ..models import Subscriber, ContactMessage, Volunteer, JobOpening, SiteContent, TeamMember, Testimonial
 import os
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
@@ -43,6 +43,9 @@ def dashboard():
         'messages': ContactMessage.query.count(),
         'volunteers': Volunteer.query.count(),
         'openings': JobOpening.query.filter_by(is_active=True).count(),
+        'team': TeamMember.query.filter_by(is_active=True).count(),
+        'testimonials': Testimonial.query.filter_by(is_active=True).count(),
+        'content_items': SiteContent.query.count(),
     }
     recent_messages = ContactMessage.query.order_by(ContactMessage.created_at.desc()).limit(5).all()
     recent_volunteers = Volunteer.query.order_by(Volunteer.created_at.desc()).limit(5).all()
@@ -198,3 +201,125 @@ def opening_delete(id):
         db.session.delete(opening)
         db.session.commit()
     return redirect(url_for('admin.openings'))
+
+# ---- Site Content ----
+
+@admin_bp.route('/site-content', methods=['GET', 'POST'])
+@login_required
+def site_content():
+    if request.method == 'POST':
+        for key, value in request.form.items():
+            if key.startswith('ck_'):
+                actual_key = key[3:]
+                item = SiteContent.query.filter_by(content_key=actual_key).first()
+                if item:
+                    item.value = value
+                else:
+                    db.session.add(SiteContent(content_key=actual_key, value=value))
+        db.session.commit()
+        return redirect(url_for('admin.site_content'))
+
+    items = SiteContent.query.order_by(SiteContent.content_key).all()
+    return render_template('admin/site_content.html', items=items)
+
+# ---- Team Members ----
+
+@admin_bp.route('/team')
+@login_required
+def team():
+    items = TeamMember.query.order_by(TeamMember.sort_order).all()
+    return render_template('admin/team.html', items=items)
+
+@admin_bp.route('/team/create', methods=['GET', 'POST'])
+@login_required
+def team_create():
+    if request.method == 'POST':
+        member = TeamMember(
+            name=request.form['name'],
+            title=request.form.get('title', ''),
+            description=request.form.get('description', ''),
+            photo_path=request.form.get('photo_path', ''),
+            sort_order=int(request.form.get('sort_order', 0)),
+            is_active=request.form.get('is_active') == 'on'
+        )
+        db.session.add(member)
+        db.session.commit()
+        return redirect(url_for('admin.team'))
+    return render_template('admin/team_form.html', member=None)
+
+@admin_bp.route('/team/<int:id>/edit', methods=['GET', 'POST'])
+@login_required
+def team_edit(id):
+    member = db.session.get(TeamMember, id)
+    if not member:
+        return redirect(url_for('admin.team'))
+    if request.method == 'POST':
+        member.name = request.form['name']
+        member.title = request.form.get('title', '')
+        member.description = request.form.get('description', '')
+        member.photo_path = request.form.get('photo_path', '')
+        member.sort_order = int(request.form.get('sort_order', 0))
+        member.is_active = request.form.get('is_active') == 'on'
+        db.session.commit()
+        return redirect(url_for('admin.team'))
+    return render_template('admin/team_form.html', member=member)
+
+@admin_bp.route('/team/<int:id>/delete', methods=['POST'])
+@login_required
+def team_delete(id):
+    member = db.session.get(TeamMember, id)
+    if member:
+        db.session.delete(member)
+        db.session.commit()
+    return redirect(url_for('admin.team'))
+
+# ---- Testimonials ----
+
+@admin_bp.route('/testimonials')
+@login_required
+def testimonials():
+    items = Testimonial.query.order_by(Testimonial.sort_order).all()
+    return render_template('admin/testimonials.html', items=items)
+
+@admin_bp.route('/testimonials/create', methods=['GET', 'POST'])
+@login_required
+def testimonial_create():
+    if request.method == 'POST':
+        t = Testimonial(
+            quote_text=request.form['quote_text'],
+            author_name=request.form.get('author_name', ''),
+            author_title=request.form.get('author_title', ''),
+            page_context=request.form.get('page_context', ''),
+            sort_order=int(request.form.get('sort_order', 0)),
+            is_active=request.form.get('is_active') == 'on'
+        )
+        db.session.add(t)
+        db.session.commit()
+        return redirect(url_for('admin.testimonials'))
+    return render_template('admin/testimonial_form.html', testimonial=None)
+
+@admin_bp.route('/testimonials/<int:id>/edit', methods=['GET', 'POST'])
+@login_required
+def testimonial_edit(id):
+    t = db.session.get(Testimonial, id)
+    if not t:
+        return redirect(url_for('admin.testimonials'))
+    if request.method == 'POST':
+        t.quote_text = request.form['quote_text']
+        t.author_name = request.form.get('author_name', '')
+        t.author_title = request.form.get('author_title', '')
+        t.page_context = request.form.get('page_context', '')
+        t.sort_order = int(request.form.get('sort_order', 0))
+        t.is_active = request.form.get('is_active') == 'on'
+        db.session.commit()
+        return redirect(url_for('admin.testimonials'))
+    return render_template('admin/testimonial_form.html', testimonial=t)
+
+@admin_bp.route('/testimonials/<int:id>/delete', methods=['POST'])
+@login_required
+def testimonial_delete(id):
+    t = db.session.get(Testimonial, id)
+    if t:
+        db.session.delete(t)
+        db.session.commit()
+    return redirect(url_for('admin.testimonials'))

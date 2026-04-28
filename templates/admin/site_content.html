@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+{% block title %}Site Content · Equiva Admin{% endblock %}
+{% block heading %}Site Content{% endblock %}
+{% block content %}
+<p style="font-size: 13px; color: var(--grey-muted); margin-bottom: var(--space-16);">Edit global text values. Changes appear on the site immediately.</p>
+<form method="POST">
+{% for item in items %}
+<div style="margin-bottom: var(--space-16); max-width: 600px;">
+    <label style="display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--grey-muted); margin-bottom: var(--space-4);">{{ item.content_key }}</label>
+    <input type="text" name="ck_{{ item.content_key }}" value="{{ item.value }}" class="form-input">
+</div>
+{% endfor %}
+<button type="submit" class="btn-primary" style="margin-top: var(--space-8);">Save All Changes</button>
+</form>
+{% endblock %}

@@ -165,10 +165,10 @@
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M3 15h6v4H5v-4M9 5v6H3V5h6zM15 15h6v4h-4v-4M21 5v6h-6V5h6z"/>
                     </svg>
-                    <p class="quote-text">Equiva doesn't just deliver a report and leave. They stay, they train our people, and they make sure the systems actually work.</p>
+                    <p class="quote-text">{{ testimonial.quote_text if testimonial else 'Equiva doesn\'t just deliver a report and leave. They stay, they train our people, and they make sure the systems actually work.' }}</p>
                     <div class="quote-author">
-                        <span class="author-name">Dr. Kwame Asante</span>
-                        <span class="author-title">Health Director, Accra</span>
+                        <span class="author-name">{{ testimonial.author_name if testimonial else 'Dr. Kwame Asante' }}</span>
+                        <span class="author-title">{{ testimonial.author_title if testimonial else 'Health Director, Accra' }}</span>
                     </div>
                 </div>
             </div>

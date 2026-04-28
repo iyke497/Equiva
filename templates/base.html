@@ -75,7 +75,7 @@
                 <div class="footer-grid">
                     <div class="footer-brand">
                         <img src="{{ url_for('static', filename='images/equiva-light.svg') }}" alt="Equiva" class="footer-logo theme-logo">
-                        <p class="footer-tagline">Driving social impact through innovative programs.</p>
+                        <p class="footer-tagline">{{ g.content.get('global.footer_tagline', 'Driving social impact through innovative programs.') }}</p>
                     </div>
                     <div class="footer-links">
                         <div class="footer-column">

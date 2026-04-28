@@ -263,10 +263,10 @@
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M3 15h6v4H5v-4M9 5v6H3V5h6zM15 15h6v4h-4v-4M21 5v6h-6V5h6z"/>
                     </svg>
-                    <p class="quote-text">Equiva helped us scale our impact. Our programmes are more effective, and we reach more communities than we ever thought possible.</p>
+                    <p class="quote-text">{{ testimonial.quote_text if testimonial else 'Equiva helped us scale our impact.' }}</p>
                     <div class="quote-author">
-                        <span class="author-name">Dr. Kwame Asante</span>
-                        <span class="author-title">Health Director, Accra</span>
+                        <span class="author-name">{{ testimonial.author_name if testimonial else 'Dr. Kwame Asante' }}</span>
+                        <span class="author-title">{{ testimonial.author_title if testimonial else 'Health Director, Accra' }}</span>
                     </div>
                 </div>
             </div>
@@ -283,18 +283,16 @@
             <p class="section-subtitle">A multidisciplinary team united by a shared commitment to equity and impact.</p>
         </div>
         <div class="team-grid">
+            {% if team_members %}
+            {% for member in team_members %}
             <div class="team-card">
-                <img src="{{ url_for('static', filename='images/team/feyikemi.jpeg') }}" alt="Oluwafeyikemi Adeniyi" class="team-avatar-img">
-                <div class="team-name">Oluwafeyikemi Adeniyi</div>
-                <div class="team-title">Managing Director, Equiva Africa</div>
-                <div class="team-desc">Leads strategic direction and programme operations across the continent.</div>
+                <img src="{{ url_for('static', filename=member.photo_path) if member.photo_path else '' }}" alt="{{ member.name }}" class="team-avatar-img">
+                <div class="team-name">{{ member.name }}</div>
+                <div class="team-title">{{ member.title }}</div>
+                <div class="team-desc">{{ member.description }}</div>
             </div>
-            <div class="team-card">
-                <img src="{{ url_for('static', filename='images/team/rolli.jpeg') }}" alt="Roli Akpolo" class="team-avatar-img">
-                <div class="team-name">Roli Akpolo</div>
-                <div class="team-title">Managing Director, Equiva Africa</div>
-                <div class="team-desc">Oversees partnerships, resource mobilisation, and advocacy strategy.</div>
-            </div>
+            {% endfor %}
+            {% endif %}
         </div>
     </div>
 </section>
