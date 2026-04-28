@@ -58,6 +58,7 @@ $SSH bash <<REMOTE
 if [ ! -f ${REMOTE_DIR}/.env ]; then
     echo "FLASK_ENV=production" > ${REMOTE_DIR}/.env
     echo "SECRET_KEY=$(openssl rand -hex 32)" >> ${REMOTE_DIR}/.env
+    echo "DATABASE_URL=sqlite:///equiva.db" >> ${REMOTE_DIR}/.env
     echo "ADMIN_PASSWORD=$(openssl rand -hex 8)" >> ${REMOTE_DIR}/.env
     echo "✓ .env created with random secrets"
     echo "  Admin password: $(grep ADMIN_PASSWORD ${REMOTE_DIR}/.env | cut -d= -f2)"
@@ -81,7 +82,6 @@ command=${REMOTE_DIR}/.venv/bin/gunicorn \
     --bind 127.0.0.1:${APP_PORT} \
     --access-logfile /var/log/equiva/access.log \
     --error-logfile /var/log/equiva/error.log \
-<<<<<<< HEAD
     wsgi:app
 directory=${REMOTE_DIR}
 user=${SERVER_USER}
