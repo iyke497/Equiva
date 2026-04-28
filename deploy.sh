@@ -108,7 +108,7 @@ sudo tee /etc/nginx/sites-available/equiva > /dev/null <<'NGINX'
 server {
     listen 80;
     server_name equivaafrica.org www.equivaafrica.org;
-    return 301 https://$host$request_uri;
+    return 301 https://\$host\$request_uri;
 }
 server {
     listen 443 ssl http2;
