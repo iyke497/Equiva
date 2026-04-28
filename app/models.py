@@ -58,14 +58,3 @@ class TeamMember(db.Model):
     photo_path = db.Column(db.String(300))
     sort_order = db.Column(db.Integer, default=0)
     is_active = db.Column(db.Boolean, default=True)
-
-class Testimonial(db.Model):
-    __tablename__ = 'testimonials'
-
-    id = db.Column(db.Integer, primary_key=True)
-    quote_text = db.Column(db.Text, nullable=False)
-    author_name = db.Column(db.String(100))
-    author_title = db.Column(db.String(200))
-    page_context = db.Column(db.String(50))
-    sort_order = db.Column(db.Integer, default=0)
-    is_active = db.Column(db.Boolean, default=True)

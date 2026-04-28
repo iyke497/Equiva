@@ -107,7 +107,7 @@
                     <span class="insight-date">Apr 10, 2026</span>
                 </div>
                 <h4 class="insight-title">Strengthening inclusive learning environments across underserved communities</h4>
-                <p class="insight-excerpt">Equiva supports governments and schools to build education systems that are equitable and effective — from teacher training to policy reform.</p>
+                <p class="insight-excerpt">Equiva supports governments and schools to build education systems that are equitable and effective, from teacher training to policy reform.</p>
                 <a href="{{ url_for('main.what_we_do') }}" class="insight-link">Read analysis →</a>
             </div>
             <div class="insight-card">
@@ -115,7 +115,7 @@
                     <span class="insight-category">Health</span>
                     <span class="insight-date">Apr 8, 2026</span>
                 </div>
-                <h4 class="insight-title">Every woman deserves a safe birth — scaling MNCH programmes across Africa</h4>
+                <h4 class="insight-title">Every woman deserves a safe birth, scaling MNCH programmes across Africa</h4>
                 <p class="insight-excerpt">Our maternal, newborn, and child health initiatives strengthen service delivery, emergency referral pathways, and community‑based care.</p>
                 <a href="{{ url_for('main.what_we_do') }}" class="insight-link">Read analysis →</a>
             </div>
@@ -125,7 +125,7 @@
                     <span class="insight-date">Apr 5, 2026</span>
                 </div>
                 <h4 class="insight-title">How data‑driven financial management is advancing Universal Health Coverage</h4>
-                <p class="insight-excerpt">Equiva works with ministries of health and finance to ensure every dollar works harder — reducing waste and expanding financial protection for the poor.</p>
+                <p class="insight-excerpt">Equiva works with ministries of health and finance to ensure every dollar works harder, reducing waste and expanding financial protection for the poor.</p>
                 <a href="{{ url_for('main.what_we_do') }}" class="insight-link">Read analysis →</a>
             </div>
         </div>
@@ -139,7 +139,7 @@
             <div class="about-content">
                 <span class="section-badge">Our Philosophy</span>
                 <h2 class="section-title">Weaving together passion and impact</h2>
-                <p class="about-text">Equiva was founded on a simple premise: exceptional social impact shouldn't be limited to large institutions. Our name reflects our approach — carefully weaving together community insights, partnerships, and evidence‑based strategies into a cohesive plan that drives lasting change.</p>
+                <p class="about-text">Equiva was founded on a simple premise: exceptional social impact shouldn't be limited to large institutions. Our name reflects our approach, carefully weaving together community insights, partnerships, and evidence‑based strategies into a cohesive plan that drives lasting change.</p>
                 <div class="about-values">
                     <div class="value-item">
                         <span class="value-number">01</span>
@@ -165,15 +165,8 @@
                 </div>
             </div>
             <div class="about-visual">
-                <div class="visual-quote">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M3 15h6v4H5v-4M9 5v6H3V5h6zM15 15h6v4h-4v-4M21 5v6h-6V5h6z"/>
-                    </svg>
-                    <p class="quote-text">{{ testimonial.quote_text if testimonial else 'Equiva helped us scale our impact. Our programs are more effective, and we reach more communities.' }}</p>
-                    <div class="quote-author">
-                        <span class="author-name">{{ testimonial.author_name if testimonial else 'Dr. Kwame Asante' }}</span>
-                        <span class="author-title">{{ testimonial.author_title if testimonial else 'Health Director, Accra' }}</span>
-                    </div>
+                <div class="visual-quote" style="background: none; padding: 0; border-radius: 0;">
+                    <img src="{{ g.content.get('home.visual.image', '/static/images/about/vision-card-1.jpg') }}" alt="" class="visual-img" loading="lazy">
                 </div>
             </div>
         </div>

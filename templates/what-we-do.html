@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}What We Do · Equiva{% endblock %}
-{% block meta_description %}Equiva's programs span health systems, data analytics, public finance, gender mainstreaming, and more — all designed to create lasting social impact.{% endblock %}
+{% block meta_description %}Equiva's programs span health systems, data analytics, public finance, gender mainstreaming, and more, all designed to create lasting social impact.{% endblock %}
 
 {% block content %}
 <!-- Page Header -->
@@ -35,7 +35,7 @@
                     </svg>
                 </div>
                 <h3 class="service-title">Health Systems Strengthening</h3>
-                <p class="service-description">Building resilient health systems that deliver quality care — from primary clinics to national policy frameworks.</p>
+                <p class="service-description">Building resilient health systems that deliver quality care, from primary clinics to national policy frameworks.</p>
             </div>
 
             <div class="service-card">
@@ -77,7 +77,7 @@
                     </svg>
                 </div>
                 <h3 class="service-title">Gender Mainstreaming</h3>
-                <p class="service-description">Embedding gender equity into every program — from design and budgeting to monitoring and evaluation.</p>
+                <p class="service-description">Embedding gender equity into every program, from design and budgeting to monitoring and evaluation.</p>
             </div>
 
             <div class="service-card">
@@ -97,7 +97,7 @@
                     </svg>
                 </div>
                 <h3 class="service-title">Advocacy &amp; Policy Engagement</h3>
-                <p class="service-description">Translating evidence into policy — equipping advocates and decision-makers with the data they need to act.</p>
+                <p class="service-description">Translating evidence into policy, equipping advocates and decision-makers with the data they need to act.</p>
             </div>
 
             <div class="service-card">
@@ -141,7 +141,7 @@
             <div class="about-content">
                 <span class="section-badge">Our Approach</span>
                 <h2 class="section-title">How we deliver</h2>
-                <p class="about-text">Every Equiva engagement follows the same principles: co‑design with communities, rigorous evidence, local capacity‑building, and a relentless focus on measurable outcomes. We don't just write reports — we embed with partners, train teams, and stay until the work sticks.</p>
+                <p class="about-text">Every Equiva engagement follows the same principles: co‑design with communities, rigorous evidence, local capacity‑building, and a relentless focus on measurable outcomes. We don't just write reports, we embed with partners, train teams, and stay until the work sticks.</p>
                 <div class="about-values">
                     <div class="value-item">
                         <span class="value-number">01</span>
@@ -167,15 +167,8 @@
                 </div>
             </div>
             <div class="about-visual">
-                <div class="visual-quote">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M3 15h6v4H5v-4M9 5v6H3V5h6zM15 15h6v4h-4v-4M21 5v6h-6V5h6z"/>
-                    </svg>
-                    <p class="quote-text">{{ testimonial.quote_text if testimonial else 'Equiva doesn\'t just deliver a report and leave. They stay, they train our people, and they make sure the systems actually work.' }}</p>
-                    <div class="quote-author">
-                        <span class="author-name">{{ testimonial.author_name if testimonial else 'Dr. Kwame Asante' }}</span>
-                        <span class="author-title">{{ testimonial.author_title if testimonial else 'Health Director, Accra' }}</span>
-                    </div>
+                <div class="visual-quote" style="background: none; padding: 0; border-radius: 0;">
+                    <img src="{{ g.content.get('what-we-do.visual.image', '/static/images/about/vision-card-2.jpg') }}" alt="" class="visual-img" loading="lazy">
                 </div>
             </div>
         </div>

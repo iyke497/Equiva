@@ -3,7 +3,7 @@ from functools import wraps
 from datetime import datetime
 import csv, io
 from ..extensions import db
-from ..models import Subscriber, ContactMessage, Volunteer, JobOpening, SiteContent, TeamMember, Testimonial
+from ..models import Subscriber, ContactMessage, Volunteer, JobOpening, SiteContent, TeamMember
 import os
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
@@ -44,7 +44,6 @@ def dashboard():
         'volunteers': Volunteer.query.count(),
         'openings': JobOpening.query.filter_by(is_active=True).count(),
         'team': TeamMember.query.filter_by(is_active=True).count(),
-        'testimonials': Testimonial.query.filter_by(is_active=True).count(),
         'content_items': SiteContent.query.count(),
     }
     recent_messages = ContactMessage.query.order_by(ContactMessage.created_at.desc()).limit(5).all()
@@ -273,53 +272,3 @@ def team_delete(id):
         db.session.commit()
     return redirect(url_for('admin.team'))
 
-# ---- Testimonials ----
-
-@admin_bp.route('/testimonials')
-@login_required
-def testimonials():
-    items = Testimonial.query.order_by(Testimonial.sort_order).all()
-    return render_template('admin/testimonials.html', items=items)
-
-@admin_bp.route('/testimonials/create', methods=['GET', 'POST'])
-@login_required
-def testimonial_create():
-    if request.method == 'POST':
-        t = Testimonial(
-            quote_text=request.form['quote_text'],
-            author_name=request.form.get('author_name', ''),
-            author_title=request.form.get('author_title', ''),
-            page_context=request.form.get('page_context', ''),
-            sort_order=int(request.form.get('sort_order', 0)),
-            is_active=request.form.get('is_active') == 'on'
-        )
-        db.session.add(t)
-        db.session.commit()
-        return redirect(url_for('admin.testimonials'))
-    return render_template('admin/testimonial_form.html', testimonial=None)
-
-@admin_bp.route('/testimonials/<int:id>/edit', methods=['GET', 'POST'])
-@login_required
-def testimonial_edit(id):
-    t = db.session.get(Testimonial, id)
-    if not t:
-        return redirect(url_for('admin.testimonials'))
-    if request.method == 'POST':
-        t.quote_text = request.form['quote_text']
-        t.author_name = request.form.get('author_name', '')
-        t.author_title = request.form.get('author_title', '')
-        t.page_context = request.form.get('page_context', '')
-        t.sort_order = int(request.form.get('sort_order', 0))
-        t.is_active = request.form.get('is_active') == 'on'
-        db.session.commit()
-        return redirect(url_for('admin.testimonials'))
-    return render_template('admin/testimonial_form.html', testimonial=t)
-
-@admin_bp.route('/testimonials/<int:id>/delete', methods=['POST'])
-@login_required
-def testimonial_delete(id):
-    t = db.session.get(Testimonial, id)
-    if t:
-        db.session.delete(t)
-        db.session.commit()
-    return redirect(url_for('admin.testimonials'))

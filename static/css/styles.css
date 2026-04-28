@@ -1143,6 +1143,15 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 
+.visual-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    object-fit: cover;
+    max-height: 360px;
+}
+
 .visual-quote svg {
     color: var(--green-core);
     opacity: 0.5;

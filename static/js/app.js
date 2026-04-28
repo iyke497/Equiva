@@ -509,13 +509,35 @@
         }
     };
 
+    var pageTerms = {
+        init: function() {
+            Anim.animatePage(document.querySelector('.landing-wrapper'));
+            Anim.startAmbient();
+        },
+        teardown: function() {
+            Anim.killScrollTriggers();
+        }
+    };
+
+    var pagePrivacy = {
+        init: function() {
+            Anim.animatePage(document.querySelector('.landing-wrapper'));
+            Anim.startAmbient();
+        },
+        teardown: function() {
+            Anim.killScrollTriggers();
+        }
+    };
+
     var pages = {
         home: pageHome,
         about: pageAbout,
         what_we_do: pageWhatWeDo,
         contact: pageContact,
         join_us: pageJoinUs,
-        partner_with_us: pageDonorPitch
+        partner_with_us: pageDonorPitch,
+        terms: pageTerms,
+        privacy: pagePrivacy
     };
 
     // ============================================

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}About · Equiva{% endblock %}
-{% block meta_description %}Who We Are — Equiva's vision, mission, objectives, and the team driving social impact through evidence‑based programs.{% endblock %}
+{% block meta_description %}Who We Are, Equiva's vision, mission, objectives, and the team driving social impact through evidence‑based programs.{% endblock %}
 
 {% block content %}
 <!-- Page Header -->
@@ -33,7 +33,7 @@
             <div class="alt-content">
                 <span class="section-badge">Our Mission</span>
                 <h2>Strengthening systems through evidence and partnership</h2>
-                <p>To strengthen health and social systems through evidence, innovation, and partnerships that improve access, quality, and outcomes — particularly for women, children, and underserved communities.</p>
+                <p>To strengthen health and social systems through evidence, innovation, and partnerships that improve access, quality, and outcomes, particularly for women, children, and underserved communities.</p>
                 <div class="about-values">
                     <div class="value-item">
                         <span class="value-number">01</span>
@@ -86,7 +86,7 @@
                 <span class="section-badge">Our Vision</span>
                 <h2>Health, dignity, and opportunity for everyone</h2>
                 <p>A world where health, education, dignity, and opportunity are accessible to all, regardless of gender, income, or geography.</p>
-                <p>We believe that true development begins with fairness — ensuring every person has equal access to the services, opportunities, and support that allow individuals and communities to thrive.</p>
+                <p>We believe that true development begins with fairness, ensuring every person has equal access to the services, opportunities, and support that allow individuals and communities to thrive.</p>
                 <div class="about-values">
                     <div class="value-item">
                         <span class="value-number">01</span>
@@ -130,7 +130,7 @@
         <div class="section-header">
             <span class="section-badge">Our Values</span>
             <h2 class="section-title">What we stand for</h2>
-            <p class="section-subtitle">Rooted in the meaning of our name — Equiva = Equity + Value — we champion fairness, wellbeing, and empowerment across every programme.</p>
+            <p class="section-subtitle">Rooted in the meaning of our name, Equiva = Equity + Value, we champion fairness, wellbeing, and empowerment across every programme.</p>
         </div>
         <div class="values-img-wrap">
             <img src="{{ url_for('static', filename='images/about/img-2-our-values.png') }}" alt="Equiva's nine core values: Equity, Integrity, Evidence & Excellence, Collaboration, Gender Equality, Innovation, Sustainability, Resilience, and Accountability" class="values-img">
@@ -163,7 +163,7 @@
                     </svg>
                 </div>
                 <h3 class="service-title">Strengthen Resilient Systems</h3>
-                <p class="service-description">Improve service delivery, governance, quality of care, and workforce capacity so that communities — especially women and vulnerable groups — can access equitable, high-quality health and social services.</p>
+                <p class="service-description">Improve service delivery, governance, quality of care, and workforce capacity so that communities, especially women and vulnerable groups, can access equitable, high-quality health and social services.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
@@ -232,8 +232,8 @@
             <div class="about-content">
                 <span class="section-badge">Why Equiva</span>
                 <h2 class="section-title">Because everyone deserves to live with dignity, health, and value</h2>
-                <p class="about-text">Our name itself reflects our commitment: <strong>Equiva = Equity + Value</strong> — a promise to promote fairness, opportunity, and thriving communities. We operate at the intersection of health systems strengthening, data‑driven decision‑making, public financial management, gender equality, health financing, and strategic advocacy.</p>
-                <p class="about-text">Through these integrated approaches, we build resilient, inclusive, and sustainable systems that deliver lasting impact. We bring together evidence‑based solutions, multi‑sectoral expertise, strong partnerships, a deep commitment to gender equality, and a people‑first approach — and translate these into real‑world impacts.</p>
+                <p class="about-text">Our name itself reflects our commitment: <strong>Equiva = Equity + Value</strong>, a promise to promote fairness, opportunity, and thriving communities. We operate at the intersection of health systems strengthening, data‑driven decision‑making, public financial management, gender equality, health financing, and strategic advocacy.</p>
+                <p class="about-text">Through these integrated approaches, we build resilient, inclusive, and sustainable systems that deliver lasting impact. We bring together evidence‑based solutions, multi‑sectoral expertise, strong partnerships, a deep commitment to gender equality, and a people‑first approach, and translate these into real‑world impacts.</p>
                 <div class="about-values">
                     <div class="value-item">
                         <span class="value-number">01</span>
@@ -259,15 +259,8 @@
                 </div>
             </div>
             <div class="about-visual">
-                <div class="visual-quote">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M3 15h6v4H5v-4M9 5v6H3V5h6zM15 15h6v4h-4v-4M21 5v6h-6V5h6z"/>
-                    </svg>
-                    <p class="quote-text">{{ testimonial.quote_text if testimonial else 'Equiva helped us scale our impact.' }}</p>
-                    <div class="quote-author">
-                        <span class="author-name">{{ testimonial.author_name if testimonial else 'Dr. Kwame Asante' }}</span>
-                        <span class="author-title">{{ testimonial.author_title if testimonial else 'Health Director, Accra' }}</span>
-                    </div>
+                <div class="visual-quote" style="background: none; padding: 0; border-radius: 0;">
+                    <img src="{{ g.content.get('about.visual.image', '/static/images/about/mission-card-1.jpg') }}" alt="" class="visual-img" loading="lazy">
                 </div>
             </div>
         </div>
@@ -304,7 +297,7 @@
             <div class="waitlist-content">
                 <span class="section-badge">{{ g.content.get('about.cta.badge', 'Let\'s Work Together') }}</span>
                 <h2 class="waitlist-title">{{ g.content.get('about.cta.title', 'Partner with us to create lasting change') }}</h2>
-                <p class="waitlist-description">{{ g.content.get('about.cta.desc', 'Whether you\'re a policy‑maker, donor, community leader, or advocate — you can be part of a movement that expands equity in life for millions.') }}</p>
+                <p class="waitlist-description">{{ g.content.get('about.cta.desc', 'Whether you\'re a policy‑maker, donor, community leader, or advocate, you can be part of a movement that expands equity in life for millions.') }}</p>
                 <div class="hero-actions actions-centered">
                     <a href="{{ url_for('main.partner_with_us') }}" class="btn-primary">
                         {{ g.content.get('about.cta.button', 'Partner with us') }}
