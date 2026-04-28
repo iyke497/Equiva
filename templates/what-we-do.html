@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}What We Do · Equiva{% endblock %}
-{% block meta_description %}Equiva's programs span health systems, data analytics, public finance, gender mainstreaming, and more — all designed to create lasting social impact.{% endblock %}
+{% block meta_description %}Equiva's programs span health systems, data analytics, public finance, gender mainstreaming, and more, all designed to create lasting social impact.{% endblock %}
 
 {% block content %}
 <!-- Page Header -->
@@ -12,9 +12,9 @@
     <div class="hero-glow hero-glow-2"></div>
     <div class="container">
         <div class="about-page-header">
-            <span class="section-badge">What We Do</span>
-            <h1 class="about-page-title">Programs that turn <span class="hero-accent">intention</span> into impact</h1>
-            <p class="about-page-subtitle">From health systems to education, our work spans the sectors that matter most to communities — each program grounded in evidence and delivered with local partners.</p>
+            <span class="section-badge">{{ g.content.get('what-we-do.hero.badge', 'What We Do') }}</span>
+            <h1 class="about-page-title">{{ g.content.get('what-we-do.hero.title', 'Programs that turn <span class="hero-accent">intention</span> into impact') | safe }}</h1>
+            <p class="about-page-subtitle">{{ g.content.get('what-we-do.hero.subtitle', 'From health systems to education, our work spans the sectors that matter most to communities.') }}</p>
         </div>
     </div>
 </section>
@@ -35,7 +35,7 @@
                     </svg>
                 </div>
                 <h3 class="service-title">Health Systems Strengthening</h3>
-                <p class="service-description">Building resilient health systems that deliver quality care — from primary clinics to national policy frameworks.</p>
+                <p class="service-description">Building resilient health systems that deliver quality care, from primary clinics to national policy frameworks.</p>
             </div>
 
             <div class="service-card">
@@ -77,7 +77,7 @@
                     </svg>
                 </div>
                 <h3 class="service-title">Gender Mainstreaming</h3>
-                <p class="service-description">Embedding gender equity into every program — from design and budgeting to monitoring and evaluation.</p>
+                <p class="service-description">Embedding gender equity into every program, from design and budgeting to monitoring and evaluation.</p>
             </div>
 
             <div class="service-card">
@@ -97,7 +97,7 @@
                     </svg>
                 </div>
                 <h3 class="service-title">Advocacy &amp; Policy Engagement</h3>
-                <p class="service-description">Translating evidence into policy — equipping advocates and decision-makers with the data they need to act.</p>
+                <p class="service-description">Translating evidence into policy, equipping advocates and decision-makers with the data they need to act.</p>
             </div>
 
             <div class="service-card">
@@ -141,7 +141,7 @@
             <div class="about-content">
                 <span class="section-badge">Our Approach</span>
                 <h2 class="section-title">How we deliver</h2>
-                <p class="about-text">Every Equiva engagement follows the same principles: co‑design with communities, rigorous evidence, local capacity‑building, and a relentless focus on measurable outcomes. We don't just write reports — we embed with partners, train teams, and stay until the work sticks.</p>
+                <p class="about-text">Every Equiva engagement follows the same principles: co‑design with communities, rigorous evidence, local capacity‑building, and a relentless focus on measurable outcomes. We don't just write reports, we embed with partners, train teams, and stay until the work sticks.</p>
                 <div class="about-values">
                     <div class="value-item">
                         <span class="value-number">01</span>
@@ -167,15 +167,8 @@
                 </div>
             </div>
             <div class="about-visual">
-                <div class="visual-quote">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M3 15h6v4H5v-4M9 5v6H3V5h6zM15 15h6v4h-4v-4M21 5v6h-6V5h6z"/>
-                    </svg>
-                    <p class="quote-text">Equiva doesn't just deliver a report and leave. They stay, they train our people, and they make sure the systems actually work.</p>
-                    <div class="quote-author">
-                        <span class="author-name">Dr. Kwame Asante</span>
-                        <span class="author-title">Health Director, Accra</span>
-                    </div>
+                <div class="visual-quote" style="background: none; padding: 0; border-radius: 0;">
+                    <img src="{{ g.content.get('what-we-do.visual.image', '/static/images/workwedo/img-2-delivery.jpg') }}" alt="" class="visual-img" loading="lazy">
                 </div>
             </div>
         </div>
@@ -187,12 +180,12 @@
     <div class="container">
         <div class="waitlist-card card-bordered">
             <div class="waitlist-content">
-                <span class="section-badge">Let's Get Started</span>
-                <h2 class="waitlist-title">See what Equiva can do for your mission</h2>
-                <p class="waitlist-description">Every program starts with a conversation. Tell us about your goals and we'll outline how our expertise can help.</p>
+                <span class="section-badge">{{ g.content.get('what-we-do.cta.badge', 'Let\'s Get Started') }}</span>
+                <h2 class="waitlist-title">{{ g.content.get('what-we-do.cta.title', 'See what Equiva can do for your mission') }}</h2>
+                <p class="waitlist-description">{{ g.content.get('what-we-do.cta.desc', 'Every program starts with a conversation. Tell us about your goals and we\'ll outline how our expertise can help.') }}</p>
                 <div class="hero-actions actions-centered">
                     <a href="{{ url_for('main.index') }}#waitlist" class="btn-primary">
-                        Start the conversation
+                        {{ g.content.get('what-we-do.cta.button', 'Start the conversation') }}
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>

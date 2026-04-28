@@ -17,10 +17,12 @@
             </a>
             <nav class="admin-nav">
                 <a href="{{ url_for('admin.dashboard') }}" class="admin-nav-link {{ 'active' if request.endpoint == 'admin.dashboard' }}">Dashboard</a>
+                <a href="{{ url_for('admin.site_content') }}" class="admin-nav-link {{ 'active' if request.endpoint in ['admin.site_content'] }}">Site Content</a>
+                <a href="{{ url_for('admin.team') }}" class="admin-nav-link {{ 'active' if request.endpoint in ['admin.team', 'admin.team_create', 'admin.team_edit'] }}">Team</a>
+                <a href="{{ url_for('admin.openings') }}" class="admin-nav-link {{ 'active' if request.endpoint == 'admin.openings' }}">Job Openings</a>
                 <a href="{{ url_for('admin.subscribers') }}" class="admin-nav-link {{ 'active' if request.endpoint == 'admin.subscribers' }}">Subscribers</a>
                 <a href="{{ url_for('admin.messages') }}" class="admin-nav-link {{ 'active' if request.endpoint == 'admin.messages' }}">Messages</a>
                 <a href="{{ url_for('admin.volunteers') }}" class="admin-nav-link {{ 'active' if request.endpoint == 'admin.volunteers' }}">Volunteers</a>
-                <a href="{{ url_for('admin.openings') }}" class="admin-nav-link {{ 'active' if request.endpoint == 'admin.openings' }}">Job Openings</a>
                 <hr style="border: none; border-top: 1px solid var(--border-light); margin: var(--space-16) 0;">
                 <a href="{{ url_for('main.index') }}" class="admin-nav-link" style="font-size: 12px;">← Back to site</a>
                 <a href="{{ url_for('admin.logout') }}" class="admin-nav-link" style="font-size: 12px;">Sign out</a>

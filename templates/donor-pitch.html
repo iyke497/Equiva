@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Partner With Us · Equiva{% endblock %}
-{% block meta_description %}Your partnership. Our expertise. Lasting equity for all — partner with Equiva to strengthen health systems, expand access, and create lasting social impact.{% endblock %}
+{% block meta_description %}Your partnership. Our expertise. Lasting equity for all, partner with Equiva to strengthen health systems, expand access, and create lasting social impact.{% endblock %}
 
 {% block content %}
 <!-- Page Header -->
@@ -12,9 +12,9 @@
     <div class="hero-glow hero-glow-2"></div>
     <div class="container">
         <div class="about-page-header">
-            <span class="section-badge">Partner With Us</span>
-            <h1 class="about-page-title">Your partnership. Our expertise.<br><span class="hero-accent">Lasting equity</span> for all.</h1>
-            <p class="about-page-subtitle">Equiva = Equity + Value — fairness that sustains life. Every woman, child, and community deserves the chance to live with health, dignity, and opportunity.</p>
+            <span class="section-badge">{{ g.content.get('partner.hero.badge', 'Partner With Us') }}</span>
+            <h1 class="about-page-title">{{ g.content.get('partner.hero.title', 'Your partnership. Our expertise.<br><span class="hero-accent">Lasting equity</span> for all.') | safe }}</h1>
+            <p class="about-page-subtitle">{{ g.content.get('partner.hero.subtitle', 'Equiva = Equity + Value, fairness that sustains life. Every woman, child, and community deserves the chance to live with health, dignity, and opportunity.') }}</p>
         </div>
     </div>
 </section>
@@ -26,7 +26,7 @@
             <div class="about-content">
                 <span class="section-badge">Why Your Partnership Matters</span>
                 <h2 class="section-title">Smart investments transform systems</h2>
-                <p class="about-text">Across many communities, preventable illness, gender inequality, weak health systems, and under‑resourced public institutions continue to limit people's ability to survive and thrive. Investments made today — smart, strategic, data‑driven — can transform entire systems for generations.</p>
+                <p class="about-text">Across many communities, preventable illness, gender inequality, weak health systems, and under‑resourced public institutions continue to limit people's ability to survive and thrive. Investments made today, smart, strategic, data‑driven, can transform entire systems for generations.</p>
                 <p class="about-text">Your support empowers us to strengthen health systems that deliver quality care, build capacity for data‑driven governance, expand financial protection, ensure women and girls are at the centre of development solutions, and advocate for accountable, evidence‑based policies.</p>
             </div>
             <div class="about-visual">
@@ -90,7 +90,7 @@
                     </svg>
                 </div>
                 <h3 class="service-title">Advanced Data Analytics</h3>
-                <p class="service-description">Turning data into action — scaling dashboards, data audits, predictive models, and evidence synthesis that save resources and improve lives.</p>
+                <p class="service-description">Turning data into action, scaling dashboards, data audits, predictive models, and evidence synthesis that save resources and improve lives.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
@@ -99,7 +99,7 @@
                     </svg>
                 </div>
                 <h3 class="service-title">Public Financial Management &amp; Health Financing</h3>
-                <p class="service-description">Working with ministries to ensure every dollar works harder — reducing waste and expanding financial protection for the poor.</p>
+                <p class="service-description">Working with ministries to ensure every dollar works harder, reducing waste and expanding financial protection for the poor.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
@@ -108,7 +108,7 @@
                     </svg>
                 </div>
                 <h3 class="service-title">Market Shaping</h3>
-                <p class="service-description">Ensuring essential medicines, diagnostics, and nutrition products are affordable and available — even in the hardest‑to‑reach communities.</p>
+                <p class="service-description">Ensuring essential medicines, diagnostics, and nutrition products are affordable and available, even in the hardest‑to‑reach communities.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
@@ -117,7 +117,7 @@
                     </svg>
                 </div>
                 <h3 class="service-title">Gender Mainstreaming</h3>
-                <p class="service-description">Designing systems that work for women — addressing structural inequalities, amplifying female leadership, and meeting their health and education needs.</p>
+                <p class="service-description">Designing systems that work for women, addressing structural inequalities, amplifying female leadership, and meeting their health and education needs.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
@@ -126,7 +126,7 @@
                     </svg>
                 </div>
                 <h3 class="service-title">Maternal, Newborn &amp; Child Health</h3>
-                <p class="service-description">Every woman deserves a safe birth. Every baby deserves a healthy start — through stronger service delivery, emergency referral pathways, and community‑based programs.</p>
+                <p class="service-description">Every woman deserves a safe birth. Every baby deserves a healthy start, through stronger service delivery, emergency referral pathways, and community‑based programs.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
@@ -135,7 +135,7 @@
                     </svg>
                 </div>
                 <h3 class="service-title">Nutrition</h3>
-                <p class="service-description">Evidence‑based interventions that reduce malnutrition and promote lifelong wellbeing — from infant feeding to food system strengthening.</p>
+                <p class="service-description">Evidence‑based interventions that reduce malnutrition and promote lifelong wellbeing, from infant feeding to food system strengthening.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
@@ -144,7 +144,7 @@
                     </svg>
                 </div>
                 <h3 class="service-title">Advocacy &amp; Policy Engagement</h3>
-                <p class="service-description">Translating evidence into policy — equipping advocates and decision‑makers with the data they need to act.</p>
+                <p class="service-description">Translating evidence into policy, equipping advocates and decision‑makers with the data they need to act.</p>
             </div>
         </div>
     </div>
@@ -158,18 +158,11 @@
                 <span class="section-badge">Our Approach</span>
                 <h2 class="section-title">Research, policy, implementation</h2>
                 <p class="about-text">Equiva works at the nexus of research, policy, and real-world implementation. We bring together technical expertise, local insights, data-driven innovations, strong government partnerships, gender-responsive design, and a deep commitment to sustainability.</p>
-                <p class="about-text">We don't run parallel systems — we strengthen existing ones, so impact continues long after the project ends.</p>
+                <p class="about-text">We don't run parallel systems, we strengthen existing ones, so impact continues long after the project ends.</p>
             </div>
             <div class="about-visual">
-                <div class="visual-quote">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M3 15h6v4H5v-4M9 5v6H3V5h6zM15 15h6v4h-4v-4M21 5v6h-6V5h6z"/>
-                    </svg>
-                    <p class="quote-text">Equiva doesn't just deliver a report and leave. They stay, they train our people, and they make sure the systems actually work.</p>
-                    <div class="quote-author">
-                        <span class="author-name">Dr. Kwame Asante</span>
-                        <span class="author-title">Health Director, Accra</span>
-                    </div>
+                <div class="visual-quote" style="background: none; padding: 0; border-radius: 0;">
+                    <img src="{{ g.content.get('partner.visual.image', '/static/images/partners/img-2-achieve.jpg') }}" alt="" class="visual-img" loading="lazy">
                 </div>
             </div>
         </div>
@@ -241,12 +234,12 @@
     <div class="container">
         <div class="waitlist-card card-bordered">
             <div class="waitlist-content">
-                <span class="section-badge">Let's Work Together</span>
-                <h2 class="waitlist-title">Deliver value for all</h2>
-                <p class="waitlist-description">Your partnership can unlock life‑changing impacts. Together, we can build a future where equity in life is not an aspiration but a reality — where systems protect the vulnerable, empower women, and ensure every community can thrive.</p>
+                <span class="section-badge">{{ g.content.get('partner.cta.badge', 'Let\'s Work Together') }}</span>
+                <h2 class="waitlist-title">{{ g.content.get('partner.cta.title', 'Deliver value for all') }}</h2>
+                <p class="waitlist-description">{{ g.content.get('partner.cta.desc', 'Your partnership can unlock life‑changing impacts. Together, we can build a future where equity in life is not an aspiration but a reality.') }}</p>
                 <div class="hero-actions actions-centered">
                     <a href="{{ url_for('main.contact') }}" class="btn-primary">
-                        Start the conversation
+                        {{ g.content.get('partner.cta.button', 'Start the conversation') }}
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>

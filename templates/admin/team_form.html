@@ -1,0 +1,37 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ 'Edit' if member else 'Add' }} Team Member · Equiva Admin{% endblock %}
+{% block heading %}{{ 'Edit' if member else 'Add' }} Team Member{% endblock %}
+{% block content %}
+<form method="POST" class="admin-form">
+    <div class="form-group">
+        <label for="name">Name *</label>
+        <input type="text" id="name" name="name" value="{{ member.name if member else '' }}" class="form-input" required>
+    </div>
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" value="{{ member.title if member else '' }}" class="form-input" placeholder="e.g. Managing Director, Equiva Africa">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" class="form-input" style="min-height: 80px;">{{ member.description if member else '' }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="photo_path">Photo Path</label>
+        <input type="text" id="photo_path" name="photo_path" value="{{ member.photo_path if member else '' }}" class="form-input" placeholder="e.g. images/team/feyikemi.jpeg">
+    </div>
+    <div class="form-group">
+        <label for="sort_order">Sort Order</label>
+        <input type="number" id="sort_order" name="sort_order" value="{{ member.sort_order if member else 0 }}" class="form-input" style="width: 100px;">
+    </div>
+    <div class="form-group">
+        <label style="display: flex; align-items: center; gap: var(--space-8); cursor: pointer;">
+            <input type="checkbox" name="is_active" {{ 'checked' if not member or member.is_active else '' }} style="width: auto;">
+            <span style="font-size: 13px;">Active</span>
+        </label>
+    </div>
+    <div style="display: flex; gap: var(--space-12);">
+        <button type="submit" class="btn-primary">{{ 'Update' if member else 'Add' }} Member</button>
+        <a href="{{ url_for('admin.team') }}" class="btn-secondary" style="display: inline-flex; align-items: center; padding: var(--space-12) var(--space-24);">Cancel</a>
+    </div>
+</form>
+{% endblock %}

@@ -11,15 +11,13 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="badge-dot"></span>
-                Empowering communities across Africa
+                {{ g.content.get('index.hero.badge', 'Empowering communities across Nigeria') }}
             </div>
             <h1 class="hero-title">
-                Drive impact<br>
-                with <span class="hero-accent">clarity</span>
+                {{ g.content.get('index.hero.title', 'Drive impact<br>with <span class=\'hero-accent\'>clarity</span>') | safe }}
             </h1>
             <p class="hero-description">
-                Equiva weaves together community insights, strategic partnerships, and evidence‑based programs
-                to create lasting social change.
+                {{ g.content.get('index.hero.subtitle', 'Equiva weaves together community insights, strategic partnerships, and evidence‑based programs to create lasting social change.') }}
             </p>
             <div class="hero-actions">
                 <button class="btn-primary" data-scroll-to="waitlist">
@@ -109,7 +107,7 @@
                     <span class="insight-date">Apr 10, 2026</span>
                 </div>
                 <h4 class="insight-title">Strengthening inclusive learning environments across underserved communities</h4>
-                <p class="insight-excerpt">Equiva supports governments and schools to build education systems that are equitable and effective — from teacher training to policy reform.</p>
+                <p class="insight-excerpt">Equiva supports governments and schools to build education systems that are equitable and effective, from teacher training to policy reform.</p>
                 <a href="{{ url_for('main.what_we_do') }}" class="insight-link">Read analysis →</a>
             </div>
             <div class="insight-card">
@@ -117,7 +115,7 @@
                     <span class="insight-category">Health</span>
                     <span class="insight-date">Apr 8, 2026</span>
                 </div>
-                <h4 class="insight-title">Every woman deserves a safe birth — scaling MNCH programmes across Africa</h4>
+                <h4 class="insight-title">Every woman deserves a safe birth, scaling MNCH programmes across Africa</h4>
                 <p class="insight-excerpt">Our maternal, newborn, and child health initiatives strengthen service delivery, emergency referral pathways, and community‑based care.</p>
                 <a href="{{ url_for('main.what_we_do') }}" class="insight-link">Read analysis →</a>
             </div>
@@ -127,7 +125,7 @@
                     <span class="insight-date">Apr 5, 2026</span>
                 </div>
                 <h4 class="insight-title">How data‑driven financial management is advancing Universal Health Coverage</h4>
-                <p class="insight-excerpt">Equiva works with ministries of health and finance to ensure every dollar works harder — reducing waste and expanding financial protection for the poor.</p>
+                <p class="insight-excerpt">Equiva works with ministries of health and finance to ensure every dollar works harder, reducing waste and expanding financial protection for the poor.</p>
                 <a href="{{ url_for('main.what_we_do') }}" class="insight-link">Read analysis →</a>
             </div>
         </div>
@@ -141,7 +139,7 @@
             <div class="about-content">
                 <span class="section-badge">Our Philosophy</span>
                 <h2 class="section-title">Weaving together passion and impact</h2>
-                <p class="about-text">Equiva was founded on a simple premise: exceptional social impact shouldn't be limited to large institutions. Our name reflects our approach — carefully weaving together community insights, partnerships, and evidence‑based strategies into a cohesive plan that drives lasting change.</p>
+                <p class="about-text">Equiva was founded on a simple premise: exceptional social impact shouldn't be limited to large institutions. Our name reflects our approach, carefully weaving together community insights, partnerships, and evidence‑based strategies into a cohesive plan that drives lasting change.</p>
                 <div class="about-values">
                     <div class="value-item">
                         <span class="value-number">01</span>
@@ -167,15 +165,8 @@
                 </div>
             </div>
             <div class="about-visual">
-                <div class="visual-quote">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M3 15h6v4H5v-4M9 5v6H3V5h6zM15 15h6v4h-4v-4M21 5v6h-6V5h6z"/>
-                    </svg>
-                    <p class="quote-text">Equiva helped us scale our impact. Our programs are more effective, and we reach more communities.</p>
-                    <div class="quote-author">
-<span class="author-name">Dr. Kwame Asante</span>
-                                <span class="author-title">Health Director, Accra</span>
-                    </div>
+                <div class="visual-quote" style="background: none; padding: 0; border-radius: 0;">
+                    <img src="{{ g.content.get('home.visual.image', '/static/images/landing/img-4-impact.jpg') }}" alt="" class="visual-img" loading="lazy">
                 </div>
             </div>
         </div>
@@ -189,9 +180,9 @@
             <div class="waitlist-glow waitlist-glow-1"></div>
             <div class="waitlist-glow waitlist-glow-2"></div>
             <div class="waitlist-content">
-                <span class="section-badge light">Limited Availability</span>
-                <h2 class="waitlist-title">Ready to drive meaningful change?</h2>
-                <p class="waitlist-description">Join our community of change‑makers and get early access to our programs. We'll reach out within 48 hours to discuss how we can collaborate.</p>
+                <span class="section-badge light">{{ g.content.get('index.cta.badge', 'Limited Availability') }}</span>
+                <h2 class="waitlist-title">{{ g.content.get('index.cta.title', 'Ready to drive meaningful change?') }}</h2>
+                <p class="waitlist-description">{{ g.content.get('index.cta.desc', 'Join our community of change‑makers and get early access to our programs. We\'ll reach out within 48 hours to discuss how we can collaborate.') }}</p>
 
                 <form id="subscribe-form" class="subscribe-form">
                     <div class="form-group">
@@ -201,7 +192,7 @@
                         <input type="email" id="subscriber-email" name="email" placeholder="Your email address" class="form-input" required>
                     </div>
                     <button type="submit" class="btn-primary btn-large" id="subscribe-btn">
-                        <span class="btn-text">Reserve your spot</span>
+                        <span class="btn-text">{{ g.content.get('index.cta.button', 'Reserve your spot') }}</span>
                         <span class="btn-spinner" style="display: none;">⏳</span>
                     </button>
                 </form>

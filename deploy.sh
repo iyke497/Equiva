@@ -81,6 +81,7 @@ command=${REMOTE_DIR}/.venv/bin/gunicorn \
     --bind 127.0.0.1:${APP_PORT} \
     --access-logfile /var/log/equiva/access.log \
     --error-logfile /var/log/equiva/error.log \
+<<<<<<< HEAD
     wsgi:app
 directory=${REMOTE_DIR}
 user=${SERVER_USER}
@@ -113,7 +114,7 @@ if [ -f /etc/letsencrypt/live/${DOMAIN}/fullchain.pem ]; then
 server {
     listen 80;
     server_name equivaafrica.org www.equivaafrica.org;
-    return 301 https://$host$request_uri;
+    return 301 https://\$host\$request_uri;
 }
 server {
     listen 443 ssl http2;

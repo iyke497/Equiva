@@ -1,0 +1,40 @@
+{% extends "admin/base.html" %}
+{% block title %}Site Content · Equiva Admin{% endblock %}
+{% block heading %}Site Content{% endblock %}
+{% block content %}
+<p style="font-size: 13px; color: var(--grey-muted); margin-bottom: var(--space-16);">Edit text content. Changes appear on the site immediately.</p>
+<form method="POST">
+{% set groups = {
+    'Global': ['global.', 'contact.'],
+    'Home': ['index.'],
+    'About': ['about.'],
+    'What We Do': ['what-we-do.'],
+    'Contact': ['contact.hero.'],
+    'Join Us': ['join-us.'],
+    'Partner With Us': ['partner.']
+} %}
+{% for group_name, prefixes in groups.items() %}
+{% set group_items = items | selectattr('content_key', 'in', items | map(attribute='content_key') | list) | list %}
+{% set matched = [] %}
+{% for item in items %}
+{% for prefix in prefixes %}
+{% if item.content_key.startswith(prefix) %}
+{% set _ = matched.append(item) %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% if matched %}
+<div style="margin-bottom: var(--space-24);">
+    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: var(--space-12); padding-bottom: var(--space-8); border-bottom: 1px solid var(--border-light);">{{ group_name }}</h3>
+    {% for item in matched %}
+    <div style="margin-bottom: var(--space-12); max-width: 600px;">
+        <label style="display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--grey-muted); margin-bottom: var(--space-4);">{{ item.content_key }}</label>
+        <input type="text" name="ck_{{ item.content_key }}" value="{{ item.value }}" class="form-input">
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endfor %}
+<button type="submit" class="btn-primary" style="margin-top: var(--space-8);">Save All Changes</button>
+</form>
+{% endblock %}

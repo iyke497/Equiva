@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Contact · Equiva{% endblock %}
-{% block meta_description %}Get in touch with Equiva — whether you're a funder, partner, or community organization, we'd love to hear from you.{% endblock %}
+{% block meta_description %}Get in touch with Equiva, whether you're a funder, partner, or community organization, we'd love to hear from you.{% endblock %}
 
 {% block content %}
 <!-- Page Header -->
@@ -10,9 +10,9 @@
     <div class="hero-glow hero-glow-2"></div>
     <div class="container">
         <div class="about-page-header">
-            <span class="section-badge">Get in Touch</span>
-            <h1 class="about-page-title">Let's start a <span class="hero-accent">conversation</span></h1>
-            <p class="about-page-subtitle">Whether you're exploring a partnership, have a question about our work, or want to join the team — we're listening.</p>
+            <span class="section-badge">{{ g.content.get('contact.hero.badge', 'Get in Touch') }}</span>
+            <h1 class="about-page-title">{{ g.content.get('contact.hero.title', 'Let\'s start a <span class="hero-accent">conversation</span>') | safe }}</h1>
+            <p class="about-page-subtitle">{{ g.content.get('contact.hero.subtitle', 'Whether you\'re exploring a partnership, have a question about our work, or want to join the team, we\'re listening.') }}</p>
         </div>
     </div>
 </section>
@@ -69,21 +69,21 @@
                         </svg>
                     </div>
                     <h3 class="service-title">Find us</h3>
-                    <p class="service-description">Abuja, Nigeria</p>
+                    <p class="service-description">{{ g.content.get('contact.address', 'Abuja, Nigeria') }}</p>
                     <div class="about-values about-values-tight">
                         <div class="value-item">
                             <span class="value-number value-number-sm contact-icon">✉</span>
                             <div class="value-content">
                                 <h5>Email</h5>
-                                <p>info@equivaafrica.org</p>
+                                <p>{{ g.content.get('contact.email', 'info@equivaafrica.org') }}</p>
                             </div>
                         </div>
                         <div class="value-item">
                             <span class="value-number value-number-sm contact-icon">☏</span>
                             <div class="value-content">
                                 <h5>Phone</h5>
-                                <p>+234 703 274 3619</p>
-                                <p>+234 806 166 4368</p>
+                                <p>{{ g.content.get('contact.phone_1', '+234 703 274 3619') }}</p>
+                                <p>{{ g.content.get('contact.phone_2', '+234 806 166 4368') }}</p>
                             </div>
                         </div>
                     </div>
