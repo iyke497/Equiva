@@ -2,9 +2,37 @@
 {% block title %}Site Content · Equiva Admin{% endblock %}
 {% block heading %}Site Content{% endblock %}
 {% block content %}
-<p style="font-size: 13px; color: var(--grey-muted); margin-bottom: var(--space-16);">Edit text content. Changes appear on the site immediately.</p>
-<form method="POST">
-{% set groups = {
+
+<style>
+.cms-tabs { display: flex; gap: 0; margin-bottom: var(--space-24); border-bottom: 2px solid var(--border-light); }
+.cms-tab { padding: var(--space-10) var(--space-20); font-size: 13px; font-weight: 600; color: var(--grey-muted); background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; transition: color 0.15s ease, border-color 0.15s ease; }
+.cms-tab:hover { color: var(--text-primary); }
+.cms-tab.active { color: var(--text-primary); border-bottom-color: var(--green-core); }
+.cms-panel { display: none; }
+.cms-panel.active { display: block; }
+.cms-group { margin-bottom: var(--space-32); }
+.cms-group h3 { font-size: 16px; font-weight: 600; margin-bottom: var(--space-12); padding-bottom: var(--space-8); border-bottom: 1px solid var(--border-light); }
+.cms-field { margin-bottom: var(--space-12); max-width: 600px; }
+.cms-field label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--grey-muted); margin-bottom: var(--space-4); }
+.cms-color-row { display: flex; align-items: center; gap: var(--space-12); }
+.cms-color-row input[type="color"] { width: 40px; height: 32px; border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 2px; cursor: pointer; }
+.cms-color-row input[type="text"] { flex: 1; }
+.cms-color-swatch { width: 20px; height: 20px; border-radius: 4px; border: 1px solid var(--border-light); display: inline-block; vertical-align: middle; margin-right: var(--space-8); }
+.cms-image-row { display: flex; align-items: center; gap: var(--space-16); padding: var(--space-12) 0; border-bottom: 1px solid var(--border-light); }
+.cms-image-row:last-child { border-bottom: none; }
+.cms-thumb { width: 80px; height: 60px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--border-light); background: var(--bg-offwhite); flex-shrink: 0; }
+.cms-image-field { flex: 1; }
+.cms-image-field input { width: 100%; }
+.cms-upload { flex-shrink: 0; }
+.cms-upload form { display: flex; gap: var(--space-8); align-items: center; }
+.cms-upload input[type="file"] { font-size: 12px; max-width: 180px; }
+.cms-upload .btn-sm { padding: var(--space-6) var(--space-12); font-size: 12px; }
+.cms-spacing-row { display: flex; align-items: center; gap: var(--space-12); }
+.cms-spacing-row input { width: 100px; }
+.cms-spacing-preview { font-size: 12px; color: var(--grey-muted); }
+</style>
+
+{% set content_groups = {
     'Global': ['global.', 'contact.'],
     'Home': ['index.'],
     'About': ['about.'],
@@ -13,28 +41,213 @@
     'Join Us': ['join-us.'],
     'Partner With Us': ['partner.']
 } %}
-{% for group_name, prefixes in groups.items() %}
-{% set group_items = items | selectattr('content_key', 'in', items | map(attribute='content_key') | list) | list %}
+
+{% set image_keys = [
+    ('images.logo_light', 'Logo (Light)'),
+    ('images.logo_dark', 'Logo (Dark)'),
+    ('images.favicon_light', 'Favicon (Light)'),
+    ('images.favicon_dark', 'Favicon (Dark)'),
+    ('images.hero_home', 'Hero — Home'),
+    ('images.hero_about', 'Hero — About'),
+    ('images.hero_what_we_do', 'Hero — What We Do'),
+    ('images.hero_partner', 'Hero — Partner'),
+    ('images.hero_join', 'Hero — Join Us'),
+    ('images.home_visual', 'Visual — Home'),
+    ('images.about_visual', 'Visual — About'),
+    ('images.what_we_do_visual', 'Visual — What We Do'),
+    ('images.partner_visual', 'Visual — Partner'),
+    ('images.about_mission_1', 'About — Mission Collage 1'),
+    ('images.about_mission_2', 'About — Mission Collage 2'),
+    ('images.about_vision_1', 'About — Vision Collage 1'),
+    ('images.about_vision_2', 'About — Vision Collage 2'),
+    ('images.about_values', 'About — Values Image'),
+] %}
+
+{% set color_keys = [
+    ('colors.green_core', 'Green Core'),
+    ('colors.green_light', 'Green Light'),
+    ('colors.green_muted', 'Green Muted'),
+    ('colors.green_mid_dark', 'Green Mid-Dark'),
+    ('colors.green_deep', 'Green Deep'),
+    ('colors.green_darkest', 'Green Darkest'),
+    ('colors.accent_royal', 'Accent Royal'),
+    ('colors.accent_sky', 'Accent Sky'),
+    ('colors.accent_pink', 'Accent Pink'),
+    ('colors.white', 'White'),
+    ('colors.gold_primary', 'Gold Primary'),
+    ('colors.gold_amber', 'Gold Amber'),
+    ('colors.gold_dark', 'Gold Dark'),
+    ('colors.gold_warm_bg', 'Gold Warm BG'),
+    ('colors.text_primary', 'Text Primary'),
+    ('colors.text_navy', 'Text Navy'),
+    ('colors.text_dark', 'Text Dark'),
+    ('colors.text_charcoal', 'Text Charcoal'),
+    ('colors.grey_body', 'Grey Body'),
+    ('colors.grey_muted', 'Grey Muted'),
+    ('colors.grey_disabled', 'Grey Disabled'),
+    ('colors.border_standard', 'Border Standard'),
+    ('colors.border_light', 'Border Light'),
+    ('colors.bg_white', 'BG White'),
+    ('colors.bg_offwhite', 'BG Off-White'),
+    ('colors.bg_light', 'BG Light'),
+    ('colors.bg_card', 'BG Card'),
+    ('colors.status_error', 'Status Error'),
+    ('colors.status_success', 'Status Success'),
+    ('colors.green_tint_100', 'Green Tint 100'),
+    ('colors.green_tint_200', 'Green Tint 200'),
+    ('colors.green_tint_300', 'Green Tint 300'),
+] %}
+
+{% set spacing_keys = [
+    ('spacing.space_2', 'Space 2'),
+    ('spacing.space_4', 'Space 4'),
+    ('spacing.space_8', 'Space 8'),
+    ('spacing.space_10', 'Space 10'),
+    ('spacing.space_12', 'Space 12'),
+    ('spacing.space_16', 'Space 16'),
+    ('spacing.space_20', 'Space 20'),
+    ('spacing.space_24', 'Space 24'),
+    ('spacing.space_32', 'Space 32'),
+    ('spacing.space_48', 'Space 48'),
+    ('spacing.space_64', 'Space 64'),
+    ('spacing.space_96', 'Space 96'),
+    ('radius.radius_sm', 'Radius SM'),
+    ('radius.radius_md', 'Radius MD'),
+    ('radius.radius_lg', 'Radius LG'),
+    ('radius.radius_xl', 'Radius XL'),
+    ('radius.radius_2xl', 'Radius 2XL'),
+    ('shadows.shadow_sm', 'Shadow SM'),
+    ('shadows.shadow_md', 'Shadow MD'),
+    ('shadows.shadow_lg', 'Shadow LG'),
+] %}
+
+{% macro get_value(key) %}
+    {% for item in items %}{% if item.content_key == key %}{{ item.value }}{% endif %}{% endfor %}
+{% endmacro %}
+
+<div class="cms-tabs">
+    <button class="cms-tab active" data-tab="tab-content">Content</button>
+    <button class="cms-tab" data-tab="tab-images">Images</button>
+    <button class="cms-tab" data-tab="tab-colors">Colors</button>
+    <button class="cms-tab" data-tab="tab-spacing">Spacing</button>
+</div>
+
+<form method="POST" id="cms-main-form">
+<!-- CONTENT TAB -->
+<div class="cms-panel active" id="tab-content">
+{% for group_name, prefixes in content_groups.items() %}
 {% set matched = [] %}
-{% for item in items %}
-{% for prefix in prefixes %}
-{% if item.content_key.startswith(prefix) %}
-{% set _ = matched.append(item) %}
-{% endif %}
-{% endfor %}
-{% endfor %}
+{% for item in items %}{% for prefix in prefixes %}{% if item.content_key.startswith(prefix) %}{% set _ = matched.append(item) %}{% endif %}{% endfor %}{% endfor %}
 {% if matched %}
-<div style="margin-bottom: var(--space-24);">
-    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: var(--space-12); padding-bottom: var(--space-8); border-bottom: 1px solid var(--border-light);">{{ group_name }}</h3>
+<div class="cms-group">
+    <h3>{{ group_name }}</h3>
     {% for item in matched %}
-    <div style="margin-bottom: var(--space-12); max-width: 600px;">
-        <label style="display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--grey-muted); margin-bottom: var(--space-4);">{{ item.content_key }}</label>
+    <div class="cms-field">
+        <label>{{ item.content_key }}</label>
         <input type="text" name="ck_{{ item.content_key }}" value="{{ item.value }}" class="form-input">
     </div>
     {% endfor %}
 </div>
 {% endif %}
 {% endfor %}
-<button type="submit" class="btn-primary" style="margin-top: var(--space-8);">Save All Changes</button>
+</div>
+
+<!-- IMAGES TAB -->
+<div class="cms-panel" id="tab-images">
+<div class="cms-group">
+    <h3>All Images</h3>
+    <p style="font-size: 12px; color: var(--grey-muted); margin-bottom: var(--space-16);">Change image URLs directly, or upload a file to ImgBB.</p>
+    {% for key, label in image_keys %}
+    {% set val = get_value(key) %}
+    <div class="cms-image-row">
+        <img src="{{ val }}" alt="" class="cms-thumb" onerror="this.style.display='none'">
+        <div class="cms-image-field">
+            <label style="display:block; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; color:var(--grey-muted); margin-bottom:4px;">{{ label }}</label>
+            <input type="text" name="ck_{{ key }}" value="{{ val }}" class="form-input" style="font-size:12px;">
+        </div>
+        <div class="cms-upload">
+            <form method="POST" action="{{ url_for('admin.upload_image') }}" enctype="multipart/form-data" target="_self">
+                <input type="hidden" name="key" value="{{ key }}">
+                <input type="file" name="image" accept="image/*">
+                <button type="submit" class="btn-primary btn-sm">Upload</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+
+<!-- COLORS TAB -->
+<div class="cms-panel" id="tab-colors">
+<div class="cms-group">
+    <h3>Colors</h3>
+    <p style="font-size: 12px; color: var(--grey-muted); margin-bottom: var(--space-16);">Use the color picker or type a hex value.</p>
+    {% for key, label in color_keys %}
+    {% set val = get_value(key) %}
+    <div class="cms-field" style="max-width: 400px;">
+        <label>{{ label }} <span style="text-transform:none; color:var(--grey-muted); font-size:10px;">({{ val }})</span></label>
+        <div class="cms-color-row">
+            <input type="color" value="{{ val }}" onchange="this.nextElementSibling.value=this.value">
+            <input type="text" name="ck_{{ key }}" value="{{ val }}" class="form-input" oninput="this.previousElementSibling.value=this.value">
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+
+<!-- SPACING TAB -->
+<div class="cms-panel" id="tab-spacing">
+<div class="cms-group">
+    <h3>Spacing, Radius &amp; Shadows</h3>
+    <p style="font-size: 12px; color: var(--grey-muted); margin-bottom: var(--space-16);">Edit spacing scale, border radius, and box shadow values.</p>
+    {% for key, label in spacing_keys %}
+    {% set val = get_value(key) %}
+    <div class="cms-field" style="max-width: 400px;">
+        <label>{{ label }}</label>
+        <div class="cms-spacing-row">
+            <input type="text" name="ck_{{ key }}" value="{{ val }}" class="form-input">
+            {% if 'radius' in key %}
+            <div class="cms-spacing-preview"><div style="width:30px;height:30px;background:var(--green-core);border-radius:{{ val }};"></div></div>
+            {% elif 'shadow' in key %}
+            <div class="cms-spacing-preview"><div style="width:30px;height:30px;background:var(--bg-white);border:1px solid var(--border-light);box-shadow:{{ val }};"></div></div>
+            {% elif 'space' in key %}
+            <div class="cms-spacing-preview"><div style="display:flex;gap:{{ val }};"><div style="width:12px;height:12px;background:var(--green-core);border-radius:2px;"></div><div style="width:12px;height:12px;background:var(--green-core);border-radius:2px;"></div></div></div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+
+<div style="margin-top: var(--space-24);">
+    <button type="submit" class="btn-primary">Save All Changes</button>
+</div>
 </form>
+
+<script>
+(function() {
+    var tabs = document.querySelectorAll('.cms-tab');
+    var panels = document.querySelectorAll('.cms-panel');
+
+    function activate(name) {
+        tabs.forEach(function(t) { t.classList.remove('active'); });
+        panels.forEach(function(p) { p.classList.remove('active'); });
+        var tab = document.querySelector('.cms-tab[data-tab="' + name + '"]');
+        var panel = document.getElementById(name);
+        if (tab) tab.classList.add('active');
+        if (panel) panel.classList.add('active');
+    }
+
+    tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+            activate(tab.getAttribute('data-tab'));
+        });
+    });
+
+    var hash = window.location.hash.replace('#', '');
+    if (hash && document.getElementById(hash)) {
+        activate(hash);
+    }
+})();
+</script>
 {% endblock %}

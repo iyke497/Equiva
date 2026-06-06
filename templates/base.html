@@ -14,8 +14,9 @@
     <link rel="preload" href="{{ url_for('static', filename='fonts/FilsonPro-Heavy.woff2') }}" as="font" type="font/woff2" crossorigin>
 
     <!-- Styles -->
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon-light.ico') }}" id="favicon">
+    <link rel="icon" type="image/x-icon" href="{{ g.content.get('images.favicon_light', '/static/images/favicon-light.ico') }}" id="favicon">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% if g.css_overrides %}<style>{{ g.css_overrides }}</style>{% endif %}
 
     {% block head_extra %}{% endblock %}
 
@@ -29,7 +30,7 @@
         <nav class="landing-nav">
             <div class="nav-container">
                 <a href="{{ url_for('main.index') }}" class="nav-brand">
-                    <img src="{{ url_for('static', filename='images/equiva-light.svg') }}" alt="Equiva" class="nav-logo theme-logo" id="nav-logo">
+                    <img src="{{ g.content.get('images.logo_light', '/static/images/equiva-light.svg') }}" alt="Equiva" class="nav-logo theme-logo" id="nav-logo">
                 </a>
                 <div class="nav-links">
                     <a href="{{ url_for('main.what_we_do') }}" class="nav-link">Our Work</a>
@@ -39,7 +40,11 @@
                     <a href="{{ url_for('main.contact') }}" class="nav-link">Contact</a>
                 </div>
                 <div class="nav-actions">
-                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"
+                            data-logo-light="{{ g.content.get('images.logo_light', '/static/images/equiva-light.svg') }}"
+                            data-logo-dark="{{ g.content.get('images.logo_dark', '/static/images/equiva-dark.svg') }}"
+                            data-favicon-light="{{ g.content.get('images.favicon_light', '/static/images/favicon-light.ico') }}"
+                            data-favicon-dark="{{ g.content.get('images.favicon_dark', '/static/images/favicon-dark.ico') }}">
                 <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                     <circle cx="12" cy="12" r="5"/>
                     <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
@@ -74,7 +79,7 @@
             <div class="container">
                 <div class="footer-grid">
                     <div class="footer-brand">
-                        <img src="{{ url_for('static', filename='images/equiva-light.svg') }}" alt="Equiva" class="footer-logo theme-logo">
+                        <img src="{{ g.content.get('images.logo_light', '/static/images/equiva-light.svg') }}" alt="Equiva" class="footer-logo theme-logo">
                         <p class="footer-tagline">{{ g.content.get('global.footer_tagline', 'Driving social impact through innovative programs.') }}</p>
                     </div>
                     <div class="footer-links">

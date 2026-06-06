@@ -167,6 +167,22 @@
     resize: vertical;
 }
 
+.btn-sm {
+    padding: var(--space-6) var(--space-12);
+    font-size: 12px;
+    background: var(--green-core);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.btn-sm:hover {
+    background: var(--green-mid-dark);
+}
+
 @media (max-width: 768px) {
     .admin-sidebar {
         width: 100%;

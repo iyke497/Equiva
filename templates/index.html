@@ -3,7 +3,7 @@
 {% block content %}
 <!-- Hero Section -->
 <section class="hero-section hero-section-bg" id="hero">
-    <img src="{{ url_for('static', filename='images/landing/img-3-baby.jpg') }}" alt="" class="hero-bg-img" aria-hidden="true">
+    <img src="{{ g.content.get('images.hero_home', '/static/images/landing/img-3-baby.jpg') }}" alt="" class="hero-bg-img" aria-hidden="true">
     <div class="hero-bg-overlay"></div>
     <div class="hero-glow hero-glow-1"></div>
     <div class="hero-glow hero-glow-2"></div>
@@ -166,7 +166,7 @@
             </div>
             <div class="about-visual">
                 <div class="visual-quote" style="background: none; padding: 0; border-radius: 0;">
-                    <img src="{{ g.content.get('home.visual.image', '/static/images/landing/img-4-impact.jpg') }}" alt="" class="visual-img" loading="lazy">
+                    <img src="{{ g.content.get('images.home_visual', '/static/images/landing/img-4-impact.jpg') }}" alt="" class="visual-img" loading="lazy">
                 </div>
             </div>
         </div>

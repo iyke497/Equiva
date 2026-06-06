@@ -6,7 +6,7 @@
 {% block content %}
 <!-- Page Header -->
 <section class="hero-section hero-section-bg" id="what-we-do-hero">
-    <img src="{{ url_for('static', filename='images/workwedo/img-1-market-women.jpg') }}" alt="" class="hero-bg-img" aria-hidden="true">
+    <img src="{{ g.content.get('images.hero_what_we_do', '/static/images/workwedo/img-1-market-women.jpg') }}" alt="" class="hero-bg-img" aria-hidden="true">
     <div class="hero-bg-overlay"></div>
     <div class="hero-glow hero-glow-1"></div>
     <div class="hero-glow hero-glow-2"></div>
@@ -168,7 +168,7 @@
             </div>
             <div class="about-visual">
                 <div class="visual-quote" style="background: none; padding: 0; border-radius: 0;">
-                    <img src="{{ g.content.get('what-we-do.visual.image', '/static/images/workwedo/img-2-delivery.jpg') }}" alt="" class="visual-img" loading="lazy">
+                    <img src="{{ g.content.get('images.what_we_do_visual', '/static/images/workwedo/img-2-delivery.jpg') }}" alt="" class="visual-img" loading="lazy">
                 </div>
             </div>
         </div>

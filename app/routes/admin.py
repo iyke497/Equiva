@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, jsonify, Response
 from functools import wraps
 from datetime import datetime
-import csv, io
+import csv, io, requests, os
 from ..extensions import db
 from ..models import Subscriber, ContactMessage, Volunteer, JobOpening, SiteContent, TeamMember
 import os
@@ -220,6 +220,41 @@ def site_content():
 
     items = SiteContent.query.order_by(SiteContent.content_key).all()
     return render_template('admin/site_content.html', items=items)
+
+@admin_bp.route('/upload-image', methods=['POST'])
+@login_required
+def upload_image():
+    content_key = request.form.get('key', '')
+    image_file = request.files.get('image')
+
+    if not content_key or not image_file:
+        return redirect(url_for('admin.site_content'))
+
+    api_key = os.environ.get('IMGBB_API_KEY', '')
+    if not api_key:
+        return redirect(url_for('admin.site_content'))
+
+    try:
+        resp = requests.post(
+            'https://api.imgbb.com/1/upload',
+            data={'key': api_key},
+            files={'image': (image_file.filename, image_file.stream, image_file.content_type)},
+            timeout=30
+        )
+        data = resp.json()
+        if data.get('success'):
+            image_url = data['data']['url']
+            item = SiteContent.query.filter_by(content_key=content_key).first()
+            if item:
+                item.value = image_url
+            else:
+                db.session.add(SiteContent(content_key=content_key, value=image_url))
+            db.session.commit()
+            return redirect(url_for('admin.site_content', _anchor='tab-images'))
+    except Exception:
+        pass
+
+    return redirect(url_for('admin.site_content'))
 
 # ---- Team Members ----
 

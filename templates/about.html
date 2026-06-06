@@ -6,7 +6,7 @@
 {% block content %}
 <!-- Page Header -->
 <section class="hero-section hero-section-bg" id="about-hero">
-    <img src="{{ url_for('static', filename='images/about/img-3.jpg') }}" alt="" class="hero-bg-img" aria-hidden="true">
+    <img src="{{ g.content.get('images.hero_about', '/static/images/about/img-3.jpg') }}" alt="" class="hero-bg-img" aria-hidden="true">
     <div class="hero-bg-overlay"></div>
     <div class="hero-glow hero-glow-1"></div>
     <div class="hero-glow hero-glow-2"></div>
@@ -25,8 +25,8 @@
         <div class="alt-container">
             <div class="alt-image">
                 <div class="img-collage">
-                    <div class="collage-primary"><img src="{{ url_for('static', filename='images/about/mission-card-1.jpg') }}" alt=""></div>
-                    <div class="collage-secondary"><img src="{{ url_for('static', filename='images/about/mission-card-2.webp') }}" alt=""></div>
+                    <div class="collage-primary"><img src="{{ g.content.get('images.about_mission_1', '/static/images/about/mission-card-1.jpg') }}" alt=""></div>
+                    <div class="collage-secondary"><img src="{{ g.content.get('images.about_mission_2', '/static/images/about/mission-card-2.webp') }}" alt=""></div>
                     <div class="collage-accent"></div>
                 </div>
             </div>
@@ -77,8 +77,8 @@
         <div class="alt-container">
             <div class="alt-image">
                 <div class="img-collage">
-                    <div class="collage-primary"><img src="{{ url_for('static', filename='images/about/vision-card-1.jpg') }}" alt=""></div>
-                    <div class="collage-secondary"><img src="{{ url_for('static', filename='images/about/vision-card-2.jpg') }}" alt=""></div>
+                    <div class="collage-primary"><img src="{{ g.content.get('images.about_vision_1', '/static/images/about/vision-card-1.jpg') }}" alt=""></div>
+                    <div class="collage-secondary"><img src="{{ g.content.get('images.about_vision_2', '/static/images/about/vision-card-2.jpg') }}" alt=""></div>
                     <div class="collage-accent"></div>
                 </div>
             </div>
@@ -133,7 +133,7 @@
             <p class="section-subtitle">Rooted in the meaning of our name, Equiva = Equity + Value, we champion fairness, wellbeing, and empowerment across every programme.</p>
         </div>
         <div class="values-img-wrap">
-            <img src="{{ url_for('static', filename='images/about/img-2-our-values.png') }}" alt="Equiva's nine core values: Equity, Integrity, Evidence & Excellence, Collaboration, Gender Equality, Innovation, Sustainability, Resilience, and Accountability" class="values-img">
+            <img src="{{ g.content.get('images.about_values', '/static/images/about/img-2-our-values.png') }}" alt="Equiva's nine core values: Equity, Integrity, Evidence & Excellence, Collaboration, Gender Equality, Innovation, Sustainability, Resilience, and Accountability" class="values-img">
         </div>
     </div>
 </section>
@@ -260,7 +260,7 @@
             </div>
             <div class="about-visual">
                 <div class="visual-quote" style="background: none; padding: 0; border-radius: 0;">
-                    <img src="{{ g.content.get('about.visual.image', '/static/images/about/img-4-white-paper.jpg') }}" alt="" class="visual-img" loading="lazy">
+                    <img src="{{ g.content.get('images.about_visual', '/static/images/about/img-4-white-paper.jpg') }}" alt="" class="visual-img" loading="lazy">
                 </div>
             </div>
         </div>
@@ -279,7 +279,7 @@
             {% if team_members %}
             {% for member in team_members %}
             <div class="team-card">
-                <img src="{{ url_for('static', filename=member.photo_path) if member.photo_path else '' }}" alt="{{ member.name }}" class="team-avatar-img">
+                <img src="{{ member.photo_path if member.photo_path and member.photo_path.startswith('http') else url_for('static', filename=member.photo_path) if member.photo_path else '' }}" alt="{{ member.name }}" class="team-avatar-img">
                 <div class="team-name">{{ member.name }}</div>
                 <div class="team-title">{{ member.title }}</div>
                 <div class="team-desc">{{ member.description }}</div>

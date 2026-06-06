@@ -558,17 +558,17 @@
     // ============================================
 
     function setThemeAssets(theme) {
+        var toggle = document.getElementById('theme-toggle');
+        var isDark = theme === 'dark';
         var favicon = document.getElementById('favicon');
-        if (favicon) {
-            favicon.href = theme === 'dark'
-                ? '/static/images/favicon-dark.ico'
-                : '/static/images/favicon-light.ico';
+        if (favicon && toggle) {
+            favicon.href = toggle.getAttribute('data-favicon-' + (isDark ? 'dark' : 'light'));
         }
         var logos = document.querySelectorAll('.theme-logo');
         logos.forEach(function(img) {
-            img.src = theme === 'dark'
-                ? '/static/images/equiva-dark.svg'
-                : '/static/images/equiva-light.svg';
+            if (toggle) {
+                img.src = toggle.getAttribute('data-logo-' + (isDark ? 'dark' : 'light'));
+            }
         });
     }
 

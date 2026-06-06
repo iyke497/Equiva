@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Admin · Equiva{% endblock %}</title>
-    <link rel="icon" type="image/x-icon" href="/static/images/favicon-light.ico">
+    <link rel="icon" type="image/x-icon" href="{{ g.content.get('images.favicon_light', '/static/images/favicon-light.ico') }}">
     <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="stylesheet" href="/static/css/admin.css">
 </head>
@@ -12,7 +12,7 @@
     <div class="admin-layout">
         <aside class="admin-sidebar">
             <a href="{{ url_for('admin.dashboard') }}" class="admin-brand">
-                <img src="/static/images/equiva-light.svg" alt="Equiva" class="admin-logo">
+                <img src="{{ g.content.get('images.logo_light', '/static/images/equiva-light.svg') }}" alt="Equiva" class="admin-logo">
                 <span style="font-size: 15px; font-weight: 700; color: var(--text-dark);">Equiva Admin</span>
             </a>
             <nav class="admin-nav">
