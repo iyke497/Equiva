@@ -1,6 +1,6 @@
 from flask import Flask, g
 from config import DevelopmentConfig, ProductionConfig
-from .extensions import db
+from .extensions import db, migrate
 from .models import Subscriber, ContactMessage, Volunteer, JobOpening, SiteContent, TeamMember
 import os
 
@@ -13,6 +13,7 @@ def create_app():
         app.config.from_object(DevelopmentConfig)
 
     db.init_app(app)
+    migrate.init_app(app, db)
 
     @app.before_request
     def load_site_content():
@@ -25,8 +26,9 @@ def create_app():
         app.register_blueprint(main_bp)
         app.register_blueprint(forms_bp)
         app.register_blueprint(admin_bp)
-        db.create_all()
-        _seed_defaults()
+        if not os.environ.get('SKIP_AUTO_TABLES'):
+            db.create_all()
+            _seed_defaults()
 
     return app
 
