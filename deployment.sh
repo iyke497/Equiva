@@ -435,12 +435,41 @@ cmd_update() {
 
     echo ""
 
-    # 5: Restart idle instance (loads new code from idle dir)
+    # 5: Rewrite supervisor config (catches gunicorn flag changes)
+    echo -e "${BLUE}Updating supervisor config...${NC}"
+    ssh "${SERVER_ALIAS}" "sudo tee ${SUPERVISOR_CONF} > /dev/null" << SUPERVISOR_EOF
+[program:equiva_green]
+command=${GREEN_DIR}/venv/bin/gunicorn wsgi:app -b 127.0.0.1:${GREEN_PORT} -w 1 --timeout 120 --max-requests 1000 --max-requests-jitter 50 --worker-tmp-dir /dev/shm
+directory=${GREEN_DIR}
+user=${SERVER_USER}
+autostart=true
+autorestart=true
+stopasgroup=true
+stderr_logfile=${LOG_DIR}/green-error.log
+stdout_logfile=${LOG_DIR}/green-access.log
+
+[program:equiva_blue]
+command=${BLUE_DIR}/venv/bin/gunicorn wsgi:app -b 127.0.0.1:${BLUE_PORT} -w 1 --timeout 120 --max-requests 1000 --max-requests-jitter 50 --worker-tmp-dir /dev/shm
+directory=${BLUE_DIR}
+user=${SERVER_USER}
+autostart=false
+autorestart=true
+stopasgroup=true
+stderr_logfile=${LOG_DIR}/blue-error.log
+stdout_logfile=${LOG_DIR}/blue-access.log
+
+[group:equiva]
+programs=equiva_green,equiva_blue
+SUPERVISOR_EOF
+    ssh "${SERVER_ALIAS}" "sudo supervisorctl reread && sudo supervisorctl update"
+    echo -e "${GREEN}✓ Supervisor config updated${NC}"
+
+    # 6: Restart idle instance (loads new code from idle dir)
     echo -e "${BLUE}Restarting ${idle_name} instance (port ${idle_port})...${NC}"
     ssh "${SERVER_ALIAS}" "sudo supervisorctl start ${idle_supervisor}"
     sleep 3
 
-    # 6: Health check
+    # 7: Health check
     health_check "${idle_port}" || {
         echo -e "${RED}✗ ${idle_name} failed health check. Rolling back...${NC}"
         ssh "${SERVER_ALIAS}" "sudo supervisorctl stop ${idle_supervisor}"
@@ -448,16 +477,16 @@ cmd_update() {
         return 1
     }
 
-    # 7: Switch static symlink to new dir
+    # 8: Switch static symlink to new dir
     flip_static "${idle_dir}"
 
-    # 8: Switch nginx to idle port
+    # 9: Switch nginx to idle port
     flip_nginx "${idle_port}"
 
-    # 9: Update deploy state
+    # 10: Update deploy state
     flip_active
 
-    # 10: STOP the old instance (now idle, kept frozen on disk)
+    # 11: STOP the old instance (now idle, kept frozen on disk)
     echo -e "${BLUE}Stopping old ${active_name} instance...${NC}"
     ssh "${SERVER_ALIAS}" "sudo supervisorctl stop ${active_supervisor}"
 
