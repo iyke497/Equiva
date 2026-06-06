@@ -280,6 +280,8 @@ cmd_init() {
     # 4: Shared data directory — DB + .env symlinks
     echo -e "${BLUE}Setting up shared data...${NC}"
     ssh "${SERVER_ALIAS}" "mkdir -p ${DATA_DIR}"
+    # Ensure nginx (www-data) can traverse home dir to reach static files
+    ssh "${SERVER_ALIAS}" "chmod o+x \$(dirname ${GREEN_DIR})"
 
     # Move existing DB from green's instance dir if present
     if ssh "${SERVER_ALIAS}" "[ -f ${GREEN_DIR}/instance/equiva.db ] && [ ! -L ${GREEN_DIR}/instance/equiva.db ]"; then
