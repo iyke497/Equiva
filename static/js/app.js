@@ -599,12 +599,14 @@
     function initHoverEffects() {
         // Button press effect (delegated)
         document.addEventListener('mousedown', function(e) {
+            if (typeof e.target.closest !== 'function') return;
             var btn = e.target.closest('button, .nav-link, .btn-primary, .btn-secondary, .nav-cta');
             if (!btn || !Anim.enabled) return;
             gsap.to(btn, { scale: 0.96, duration: 0.08, ease: 'power2.in' });
         });
 
         document.addEventListener('mouseup', function(e) {
+            if (typeof e.target.closest !== 'function') return;
             var btn = e.target.closest('button, .nav-link, .btn-primary, .btn-secondary, .nav-cta');
             if (!btn || !Anim.enabled) return;
             gsap.to(btn, { scale: 1, duration: 0.4, ease: 'elastic.out(1, 0.4)' });

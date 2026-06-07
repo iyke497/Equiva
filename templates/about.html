@@ -280,9 +280,11 @@
             {% for member in team_members %}
             <div class="team-card">
                 <img src="{{ member.photo_path if member.photo_path and member.photo_path.startswith('http') else url_for('static', filename=member.photo_path) if member.photo_path else '' }}" alt="{{ member.name }}" class="team-avatar-img">
+                <div class="team-card-overlay">
                 <div class="team-name">{{ member.name }}</div>
                 <div class="team-title">{{ member.title }}</div>
                 <div class="team-desc">{{ member.description }}</div>
+                </div>
             </div>
             {% endfor %}
             {% endif %}

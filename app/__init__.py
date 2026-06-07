@@ -7,10 +7,7 @@ import os
 def build_css_overrides(content):
     rules = []
     for key, value in content.items():
-        if key.startswith('colors.'):
-            var_name = '--' + key[7:].replace('_', '-')
-            rules.append('  %s: %s;' % (var_name, value))
-        elif key.startswith('spacing.'):
+        if key.startswith('spacing.'):
             var_name = '--' + key[8:].replace('_', '-')
             rules.append('  %s: %s;' % (var_name, value))
         elif key.startswith('radius.'):
@@ -199,10 +196,10 @@ def _seed_defaults():
         team = [
             TeamMember(name='Oluwafeyikemi Adeniyi', title='Managing Director, Equiva Africa',
                        description='Leads strategic direction and programme operations across the continent.',
-                       photo_path='images/team/feyikemi.jpeg', sort_order=1),
+                       photo_path='https://i.ibb.co/4ZQDs43C/Feyikemi-potrait.jpg', sort_order=1),
             TeamMember(name='Roli Akpolo', title='Managing Director, Equiva Africa',
                        description='Oversees partnerships, resource mobilisation, and advocacy strategy.',
-                       photo_path='images/team/rolli.jpeg', sort_order=2),
+                       photo_path='https://i.ibb.co/twFjzY2v/Roli-potrait.jpg', sort_order=2),
         ]
         db.session.add_all(team)
 
